@@ -119,6 +119,12 @@ function dibujar_mapa_4 () {
     tiles.setCurrentTilemap(tilemap`mapaPrueba`)
     scene.setBackgroundImage(assets.image`mapafodno`)
 }
+function Pantalla_inicio () {
+    scene.setBackgroundColor(15)
+    game.splash("PIXEL DASH")
+    game.showLongText("Presiona A para continuar", DialogLayout.Bottom)
+    effects.starField.startScreenEffect()
+}
 function dibujar_mapa_2 () {
     tiles.setCurrentTilemap(tilemap`mapaPrueba`)
     scene.setBackgroundImage(assets.image`mapafodno`)
@@ -240,6 +246,9 @@ function personaje_2 () {
 function dibujar_mapa_1 () {
     tiles.setCurrentTilemap(tilemap`mapaPrueba`)
     scene.setBackgroundImage(assets.image`mapafodno`)
+}
+function Menu_principal () {
+	
 }
 function dibujar_mapa_3 () {
     tiles.setCurrentTilemap(tilemap`mapaPrueba`)
@@ -474,5 +483,6 @@ function personaje_3 () {
     scene.cameraFollowSprite(mySprite)
 }
 let mySprite: Sprite = null
+Pantalla_inicio()
 dibujar_mapa_1()
 personaje_1()
