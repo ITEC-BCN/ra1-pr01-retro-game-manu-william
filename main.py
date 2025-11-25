@@ -1,9 +1,12 @@
-controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+def on_a_pressed():
     mySprite.vy = -200
-})
-let mySprite: Sprite = null
-tiles.setCurrentTilemap(tilemap`nivel1`)
-scene.setBackgroundImage(img`
+controller.A.on_event(ControllerButtonEvent.PRESSED, on_a_pressed)
+
+mySprite: Sprite = None
+tiles.set_current_tilemap(tilemap("""
+    level2
+    """))
+scene.set_background_image(img("""
     7777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777
     7777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777
     7777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777
@@ -124,25 +127,26 @@ scene.setBackgroundImage(img`
     7777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777
     7777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777
     7777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777
-    `)
-mySprite = sprites.create(img`
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . b 5 5 b . . . 
-    . . . . . . b b b b b b . . . . 
-    . . . . . b b 5 5 5 5 5 b . . . 
-    . b b b b b 5 5 5 5 5 5 5 b . . 
-    . b d 5 b 5 5 5 5 5 5 5 5 b . . 
-    . . b 5 5 b 5 d 1 f 5 d 4 f . . 
-    . . b d 5 5 b 1 f f 5 4 4 c . . 
-    b b d b 5 5 5 d f b 4 4 4 4 b . 
-    b d d c d 5 5 b 5 4 4 4 4 4 4 b 
-    c d d d c c b 5 5 5 5 5 5 5 b . 
-    c b d d d d d 5 5 5 5 5 5 5 b . 
-    . c d d d d d d 5 5 5 5 5 d b . 
-    . . c b d d d d d 5 5 5 b b . . 
-    . . . c c c c c c c c b b . . . 
-    `, SpriteKind.Player)
+    """))
+mySprite = sprites.create(img("""
+        . . . . . . . . . . . . . . . .
+        . . . . . . . . . . . . . . . .
+        . . . . . . . . . b 5 5 b . . .
+        . . . . . . b b b b b b . . . .
+        . . . . . b b 5 5 5 5 5 b . . .
+        . b b b b b 5 5 5 5 5 5 5 b . .
+        . b d 5 b 5 5 5 5 5 5 5 5 b . .
+        . . b 5 5 b 5 d 1 f 5 d 4 f . .
+        . . b d 5 5 b 1 f f 5 4 4 c . .
+        b b d b 5 5 5 d f b 4 4 4 4 b .
+        b d d c d 5 5 b 5 4 4 4 4 4 4 b
+        c d d d c c b 5 5 5 5 5 5 5 b .
+        c b d d d d d 5 5 5 5 5 5 5 b .
+        . c d d d d d d 5 5 5 5 5 d b .
+        . . c b d d d d d 5 5 5 b b . .
+        . . . c c c c c c c c b b . . .
+        """),
+    SpriteKind.player)
 mySprite.ay = 400
-controller.moveSprite(mySprite, 100, 0)
-scene.cameraFollowSprite(mySprite)
+controller.move_sprite(mySprite, 100, 0)
+scene.camera_follow_sprite(mySprite)

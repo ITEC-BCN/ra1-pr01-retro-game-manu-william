@@ -1,5 +1,5 @@
 {
-    "name": "Demo",
+    "name": "ra1-pr01-retro-game-manu-william",
     "description": "",
     "dependencies": {
         "device": "*"
@@ -8,13 +8,16 @@
         "main.blocks",
         "main.ts",
         "README.md",
-        "assets.json"
+        "assets.json",
+        "main.py",
+        "tilemap.g.jres",
+        "tilemap.g.ts"
     ],
     "testFiles": [
         "test.ts"
     ],
     "targetVersions": {
-        "target": "1.12.56",
+        "target": "2.0.62",
         "targetId": "arcade"
     },
     "supportedTargets": [
