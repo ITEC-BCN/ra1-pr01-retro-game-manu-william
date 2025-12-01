@@ -253,7 +253,7 @@ function dibujar_mapa_1 () {
     scene.setBackgroundImage(assets.image`mapafodno`)
 }
 function Menu_principal () {
-	
+    scene.setBackgroundColor(15)
 }
 function dibujar_mapa_3 () {
     tiles.setCurrentTilemap(tilemap`mapaPrueba`)
