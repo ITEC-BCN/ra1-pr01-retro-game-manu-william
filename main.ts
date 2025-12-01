@@ -113,13 +113,15 @@ function personaje_4 () {
     scene.cameraFollowSprite(mySprite)
 }
 function Seleccionar_personajes () {
-	
+    scene.setBackgroundColor(4)
+    controller.moveSprite(mySprite)
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     mySprite.vy = -200
 })
 function Seleccionar_mapas () {
-	
+    scene.setBackgroundColor(4)
+    controller.moveSprite(mySprite)
 }
 function dibujar_mapa_4 () {
     tiles.setCurrentTilemap(tilemap`mapaPrueba`)
@@ -253,7 +255,11 @@ function dibujar_mapa_1 () {
     scene.setBackgroundImage(assets.image`mapafodno`)
 }
 function Menu_principal () {
+    let opcionMenu = 0
     scene.setBackgroundColor(15)
+    if (opcionMenu == 0) {
+        game.showLongText("", DialogLayout.Bottom)
+    }
 }
 function dibujar_mapa_3 () {
     tiles.setCurrentTilemap(tilemap`mapaPrueba`)
