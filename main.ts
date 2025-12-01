@@ -248,7 +248,7 @@ function dibujar_mapa_1 () {
     scene.setBackgroundImage(assets.image`mapafodno`)
 }
 function Menu_principal () {
-	
+    dibujar_mapa_2()
 }
 function dibujar_mapa_3 () {
     tiles.setCurrentTilemap(tilemap`mapaPrueba`)
@@ -483,6 +483,5 @@ function personaje_3 () {
     scene.cameraFollowSprite(mySprite)
 }
 let mySprite: Sprite = null
-Pantalla_inicio()
 dibujar_mapa_1()
 personaje_1()
