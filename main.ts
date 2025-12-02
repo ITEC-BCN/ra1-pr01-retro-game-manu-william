@@ -255,11 +255,46 @@ function dibujar_mapa_1 () {
     scene.setBackgroundImage(assets.image`mapafodno`)
 }
 function Menu_principal () {
-    let opcionMenu = 0
     scene.setBackgroundColor(15)
-    if (opcionMenu == 0) {
-        game.showLongText("", DialogLayout.Bottom)
-    }
+    pantallaActual = "menuPrincipal"
+    items = [miniMenu.createMenuItem("Personajes", img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . f f f . . . . . . . 
+        . . . . . . f f f . . . . . . . 
+        . . . . . . . f . . . . . . . . 
+        . . . . . . . f . . . . . . . . 
+        . . . . . f f f f . . . f . . . 
+        . . f f f f . f . f f f f . . . 
+        . . . . . . . f . . . . . . . . 
+        . . . . . . . f . . . . . . . . 
+        . . . . . . . f . . . . . . . . 
+        . . . . . . f f f f . . . . . . 
+        . . . . . f f . . f . . . . . . 
+        . . . . . f . . . f f . . . . . 
+        . . . . f f . . . . f f . . . . 
+        . . . . f . . . . . . f . . . . 
+        `), miniMenu.createMenuItem("Mapas", img`
+        8 . . . . . . . . . . . . 8 8 . 
+        8 8 8 8 8 . . . . . 8 . . 8 . . 
+        . . . . . . . . . . 8 8 8 . . . 
+        . . . . . . . . . . . 8 8 . . . 
+        . 7 7 7 7 7 7 7 . . . . . . . . 
+        . . . . . . . 7 7 7 . . . 7 7 . 
+        . . . . . . . . . 7 7 7 7 7 . . 
+        . . . . . . . . . . . . . . . 7 
+        7 7 7 7 . . . . . . . . 7 7 7 7 
+        . . . 7 7 7 7 7 7 7 . 7 7 . . . 
+        . . . . . . . . . . 7 7 . . . . 
+        7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+        . . . . . . . . . . . . . . . . 
+        7 7 7 7 7 7 . . . . . . . 7 7 7 
+        . . . . . 7 7 7 7 7 7 7 7 7 . . 
+        . . . . . . . . . . . . . . . . 
+        `)]
+    menuPrincipal = miniMenu.createMenuFromArray(items)
+    menuPrincipal.setTitle("Menu Principal")
+    menuPrincipal.setButtonEventsEnabled(true)
 }
 function dibujar_mapa_3 () {
     tiles.setCurrentTilemap(tilemap`mapaPrueba`)
@@ -493,7 +528,9 @@ function personaje_3 () {
     controller.moveSprite(mySprite, 100, 0)
     scene.cameraFollowSprite(mySprite)
 }
+let menuPrincipal: miniMenu.MenuSprite = null
+let items: miniMenu.MenuItem[] = []
+let pantallaActual = ""
 let mySprite: Sprite = null
 pantalla_inicio()
-dibujar_mapa_1()
-personaje_1()
+Menu_principal()
