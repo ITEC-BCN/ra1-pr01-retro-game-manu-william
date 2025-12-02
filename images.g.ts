@@ -1,4 +1,4 @@
-// Código generado automáticamente. No editar.
+// Auto-generated code. Do not edit.
 namespace myImages {
 
     helpers._registerFactory("image", function(name: string) {
@@ -255,65 +255,6 @@ c b d c d 5 5 b 5 5 5 5 5 5 b .
 . . . c c c c c c c c b b . . . 
 . . . . . . . . . . . . . . . . 
 `];
-            case "myAnim0":
-            case "anim2":return [img`
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . 
-`];
-            case "myAnim1":
-            case "anim3":return [img`
-. . . . . . e e . . . . . . 
-. . e 2 2 2 2 2 2 2 2 . . . 
-. f 2 . . b d d 1 1 1 . . . 
-. 2 . . . . c d 1 4 4 . . . 
-1 . . . . . . d 1 1 1 . . . 
-. . . . . b d d c d 1 1 1 d 
-. . . . . 2 2 2 1 1 c d d . 
-. . . . f 2 2 2 1 1 1 . . . 
-. . f 2 2 f e 2 b 1 1 1 . . 
-. . f 2 2 2 2 f b 1 e 4 f 4 
-. . f f f 2 2 2 2 c c e e . 
-. 2 2 2 2 e e e e e 5 . . . 
-. 1 1 2 2 2 2 2 e e e . . . 
-f c 1 1 1 1 1 1 1 1 1 . . . 
-f f f f e c c b b b c . . . 
-f f c b 1 2 2 2 . . . . . . 
-f f . f e 1 1 d . . . . . . 
-. . f f f f f f . . . . . . 
-`, img`
-. . . . . . . 2 e . . . . . 
-. . . . . 2 2 2 2 2 2 . . . 
-. . . . 2 e . d d 1 1 . . . 
-. . . 2 2 . . b d 1 4 . . . 
-. . . 1 . . . b 1 1 1 . . . 
-. . . . . e b 2 2 1 1 1 . . 
-. . . . 2 f e 2 2 2 c c . . 
-. . c 1 f 2 2 f 2 2 b 1 e 4 
-. . e c e 2 2 2 f f f d 1 . 
-. . . . e e 2 2 2 2 1 . . . 
-. . . 2 2 e e e e 2 d . . . 
-. . d 1 2 2 2 e e 1 . . . . 
-. . . c d 1 1 2 2 1 . . . . 
-. . . f 2 c d 1 1 2 . . . . 
-. . . 2 2 2 f d 1 . . . . . 
-. . c 1 2 f f 5 . . . . . . 
-. . f e . . f f f . . . . . 
-. . f f f . . f f . . . . . 
-`];
         }
         return null;
     })
@@ -326,4 +267,4 @@ f f . f e 1 1 d . . . . . .
     })
 
 }
-// Código generado automáticamente. No editar.
+// Auto-generated code. Do not edit.

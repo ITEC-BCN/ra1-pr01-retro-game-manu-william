@@ -113,19 +113,30 @@ function personaje_4 () {
     scene.cameraFollowSprite(mySprite)
 }
 function Seleccionar_personajes () {
-    scene.setBackgroundColor(4)
-    controller.moveSprite(mySprite)
-}
-function Seleccionar_mapas () {
-    scene.setBackgroundColor(4)
-    controller.moveSprite(mySprite)
+    personaje_4()
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     mySprite.vy = -200
 })
+function onMenuPrincipalA (value: string, index: number) {
+    if (index == 0) {
+        menuPrincipal.close()
+        Seleccionar_personajes()
+    } else if (index == 1) {
+        menuPrincipal.close()
+        Seleccionar_mapas()
+    }
+}
+function Seleccionar_mapas () {
+    dibujar_mapa_4()
+}
 function dibujar_mapa_4 () {
     tiles.setCurrentTilemap(tilemap`mapaPrueba`)
     scene.setBackgroundImage(assets.image`mapafodno`)
+}
+function onMenuPrincipalB (value: string, index: number) {
+    menuPrincipal.close()
+    game.splash("saliendo del menu")
 }
 function pantalla_inicio () {
     scene.setBackgroundColor(15)
@@ -193,6 +204,12 @@ function Menu_principal () {
     menuPrincipal = miniMenu.createMenuFromArray(items)
     menuPrincipal.setTitle("Menu Principal")
     menuPrincipal.setButtonEventsEnabled(true)
+    menuPrincipal.onButtonPressed(controller.A, function (selection, selectedIndex) {
+        onMenuPrincipalA(selection, selectedIndex)
+    })
+    menuPrincipal.onButtonPressed(controller.B, function (selection, selectedIndex) {
+        onMenuPrincipalB(selection, selectedIndex)
+    })
 }
 function dibujar_mapa_3 () {
     tiles.setCurrentTilemap(tilemap`mapaPrueba`)
@@ -202,7 +219,24 @@ function personaje_1 () {
     mySprite = sprites.create(assets.image`pato`, SpriteKind.Player)
     animation.runImageAnimation(
     mySprite,
-    assets.animation`myAnim1`,
+    [img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `],
     200,
     true
     )
@@ -324,9 +358,9 @@ function personaje_3 () {
     controller.moveSprite(mySprite, 100, 0)
     scene.cameraFollowSprite(mySprite)
 }
-let menuPrincipal: miniMenu.MenuSprite = null
 let items: miniMenu.MenuItem[] = []
 let pantallaActual = ""
+let menuPrincipal: miniMenu.MenuSprite = null
 let mySprite: Sprite = null
 pantalla_inicio()
 Menu_principal()
