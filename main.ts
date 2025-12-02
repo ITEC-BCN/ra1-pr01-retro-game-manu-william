@@ -115,9 +115,6 @@ function personaje_4 () {
 function Seleccionar_personajes () {
     personaje_4()
 }
-controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    mySprite.vy = -200
-})
 function onMenuPrincipalA (value: string, index: number) {
     if (index == 0) {
         menuPrincipal.close()
@@ -130,6 +127,9 @@ function onMenuPrincipalA (value: string, index: number) {
 function Seleccionar_mapas () {
     dibujar_mapa_4()
 }
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    mySprite.vy = -200
+})
 function dibujar_mapa_4 () {
     tiles.setCurrentTilemap(tilemap`mapaPrueba`)
     scene.setBackgroundImage(assets.image`mapafodno`)
@@ -151,24 +151,7 @@ function personaje_2 () {
     mySprite = sprites.create(assets.image`pato`, SpriteKind.Player)
     animation.runImageAnimation(
     mySprite,
-    [img`
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        `],
+    assets.animation`Santa`,
     200,
     true
     )
@@ -236,24 +219,7 @@ function personaje_1 () {
     mySprite = sprites.create(assets.image`pato`, SpriteKind.Player)
     animation.runImageAnimation(
     mySprite,
-    [img`
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        `],
+    assets.animation`Bart`,
     200,
     true
     )

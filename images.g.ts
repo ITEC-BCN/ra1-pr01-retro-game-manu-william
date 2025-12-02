@@ -1,4 +1,4 @@
-// Auto-generated code. Do not edit.
+// Código generado automáticamente. No editar.
 namespace myImages {
 
     helpers._registerFactory("image", function(name: string) {
@@ -255,6 +255,82 @@ c b d c d 5 5 b 5 5 5 5 5 5 b .
 . . . c c c c c c c c b b . . . 
 . . . . . . . . . . . . . . . . 
 `];
+            case "Santa":
+            case "anim3":return [img`
+. . . . . . e e . . . . . . 
+. . e 2 2 2 2 2 2 2 2 . . . 
+. f 2 . . b d d 1 1 1 . . . 
+. 2 . . . . c d 1 4 4 . . . 
+1 . . . . . . d 1 1 1 . . . 
+. . . . . b d d c d 1 1 1 d 
+. . . . . 2 2 2 1 1 c d d . 
+. . . . f 2 2 2 1 1 1 . . . 
+. . f 2 2 f e 2 b 1 1 1 . . 
+. . f 2 2 2 2 f b 1 e 4 f 4 
+. . f f f 2 2 2 2 c c e e . 
+. 2 2 2 2 e e e e e 5 . . . 
+. 1 1 2 2 2 2 2 e e e . . . 
+f c 1 1 1 1 1 1 1 1 1 . . . 
+f f f f e c c b b b c . . . 
+f f c b 1 2 2 2 . . . . . . 
+f f . f e 1 1 d . . . . . . 
+. . f f f f f f . . . . . . 
+`, img`
+. . . . . . . 2 e . . . . . 
+. . . . . 2 2 2 2 2 2 . . . 
+. . . . 2 e . d d 1 1 . . . 
+. . . 2 2 . . b d 1 4 . . . 
+. . . 1 . . . b 1 1 1 . . . 
+. . . . . e b 2 2 1 1 1 . . 
+. . . . 2 f e 2 2 2 c c . . 
+. . c 1 f 2 2 f 2 2 b 1 e 4 
+. . e c e 2 2 2 f f f d 1 . 
+. . . . e e 2 2 2 2 1 . . . 
+. . . 2 2 e e e e 2 d . . . 
+. . d 1 2 2 2 e e 1 . . . . 
+. . . c d 1 1 2 2 1 . . . . 
+. . . f 2 c d 1 1 2 . . . . 
+. . . 2 2 2 f d 1 . . . . . 
+. . c 1 2 f f 5 . . . . . . 
+. . f e . . f f f . . . . . 
+. . f f f . . f f . . . . . 
+`];
+            case "Bart":
+            case "anim2":return [img`
+. . . . . . . c . . . . . . . . 
+. . . . . c 5 5 5 5 c . . . . . 
+. . . . . c 5 5 5 5 5 5 . . . . 
+. . . . c 5 5 5 5 5 1 1 f c . . 
+. . . . . . c 5 5 5 1 f 5 5 . . 
+. . . . . . . . 4 5 5 5 5 c . . 
+. . . . . . . . 5 5 5 5 4 c . . 
+. c . c c 5 6 6 6 6 6 . . . . . 
+5 4 4 5 5 4 6 6 c 6 6 6 . . . . 
+c . . . 6 6 6 6 4 5 5 5 . . . . 
+. . . . 6 6 6 6 5 6 8 c . . . . 
+. . . . 6 6 6 4 5 5 4 4 . . . . 
+. . c c c c c d 6 c 4 c c c c . 
+c 7 7 7 7 7 8 8 c 7 c c 7 7 7 7 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 c . 
+. c 2 2 . . . . . . 2 2 . . . . 
+`, img`
+. . . . . . c c 5 5 c . . . . . 
+. . . . . c 5 5 5 5 5 5 . . . . 
+. . . . c 5 5 5 5 5 5 5 5 c . . 
+. . . . c 5 5 5 5 5 1 1 1 c . . 
+. . . . . . . . 5 5 5 f 5 5 c . 
+. . . . . . . . c 5 5 5 5 5 c . 
+. . . . . . . . 5 5 5 5 4 c . . 
+. . . . c c 5 4 6 6 6 c . . . . 
+. . c 4 c c 6 6 6 6 c c c . . . 
+. . . . 6 6 6 6 6 6 4 5 c . . . 
+. . . . 6 6 6 6 6 6 6 8 . . . . 
+. . . . c 6 6 4 5 8 4 4 . . . . 
+. . c c c c 8 4 5 c 4 4 c c c . 
+. 1 1 1 1 c 6 1 c 8 8 8 c 1 1 1 
+7 7 7 7 7 7 c 8 8 7 7 7 7 7 7 c 
+. c 2 1 . . . . . . 2 2 c . . . 
+`];
         }
         return null;
     })
@@ -267,4 +343,4 @@ c b d c d 5 5 b 5 5 5 5 5 5 b .
     })
 
 }
-// Auto-generated code. Do not edit.
+// Código generado automáticamente. No editar.
