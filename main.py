@@ -117,11 +117,17 @@ def personaje_4():
     mySprite.ay = 400
     controller.move_sprite(mySprite, 100, 0)
     scene.camera_follow_sprite(mySprite)
+def Seleccionar_personajes():
+    scene.set_background_color(4)
+    controller.move_sprite(mySprite)
 
 def on_a_pressed():
     mySprite.vy = -200
 controller.A.on_event(ControllerButtonEvent.PRESSED, on_a_pressed)
 
+def Seleccionar_mapas():
+    scene.set_background_color(4)
+    controller.move_sprite(mySprite)
 def dibujar_mapa_4():
     tiles.set_current_tilemap(tilemap("""
         mapaPrueba
@@ -129,6 +135,10 @@ def dibujar_mapa_4():
     scene.set_background_image(assets.image("""
         mapafodno
         """))
+def pantalla_inicio():
+    scene.set_background_color(15)
+    game.splash("PIXEL DASH")
+    effects.confetti.start_screen_effect(100)
 def dibujar_mapa_2():
     tiles.set_current_tilemap(tilemap("""
         mapaPrueba
@@ -262,6 +272,11 @@ def dibujar_mapa_1():
     scene.set_background_image(assets.image("""
         mapafodno
         """))
+def Menu_principal():
+    opcionMenu = 0
+    scene.set_background_color(15)
+    if opcionMenu == 0:
+        game.show_long_text("", DialogLayout.BOTTOM)
 def dibujar_mapa_3():
     tiles.set_current_tilemap(tilemap("""
         mapaPrueba
@@ -508,5 +523,6 @@ def personaje_3():
     controller.move_sprite(mySprite, 100, 0)
     scene.camera_follow_sprite(mySprite)
 mySprite: Sprite = None
+pantalla_inicio()
 dibujar_mapa_1()
 personaje_1()
