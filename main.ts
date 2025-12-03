@@ -1,3 +1,4 @@
+let myMenu: miniMenu.MenuSprite = null
 function personaje_4 () {
     mySprite = sprites.create(assets.image`pato`, SpriteKind.Player)
     animation.runImageAnimation(
@@ -182,8 +183,133 @@ function onPersonaje_Seleccionado (selection: string, selectedIndex: number) {
     game.splash("personaje seleccionado")
     Menu_principal()
 }
+function onMapa_Seleccionado (selection: string, selectedIndex: number) {
+    mapaSeleccionado = selectedIndex + 1
+    menuMapas.close()
+    game.splash("Mapa seleccionado")
+    call_Confirmar_inicio()
+}
+function onMapa_Cancelar (selection: string, selectedIndex: number) {
+    menuMapas.close()
+    Menu_principal()
+}
 function Seleccionar_mapas () {
-    dibujar_mapa_4()
+    pantallaActual = "seleccionarMapa"
+    itemsMapas = [
+    miniMenu.createMenuItem("mapa1", img`
+        .......ffffffffffffffffff.......
+        ......ffeeeeeeeeeeeeeeeeff......
+        .....ffeeeeeeeeeeeeeeeeeeff.....
+        ....ffeeeeeeeeeeeeeeeeeeeeff....
+        ...ffeeeeeeeeeeeeeeeeeeeeeeff...
+        ..ffeeeeeeeeeeeeeeeeeeeeeeeeff..
+        .ffeeeeeeeeeeeeeeeeeeeeeeeeeeff.
+        .feeeeeeeeeeeeeeeeeeeeeeeeeeeef.
+        .f2e2eee2e22e2eeee2e22e2eee2e2f.
+        .f2ee222ef22ee2222ee22fe222ee2f.
+        .f22eeeeffe22eeeeee22effeeee22f.
+        .ff222fffefe22222222efefff222ff.
+        ..fffeeeeeffe222222effeeeeefff..
+        ..feeee22e2fffeeeefff2e22eeeef..
+        ..feeee22e2fffeeeefff2e22eeeef..
+        ..f22e22e2effeeeeeeffe2e22e22e..
+        .e22e22e22fffeeeeeefff22e22e22e.
+        .eee22222fffeeeeeeeefff22222eee.
+        .e22222effffeeeeeeeeffffe22222e.
+        ..ffeffffffeeeeeeeeeeffffffeff..
+        ..f2eefffffeeeeeeeeeefffffee2f..
+        ..f222ffffeeeeeeeeeeeeffff222f..
+        .eeeeeffffbbbddddddbbbffffeeeee.
+        .e22222ffbbddddddddddbbff22222e.
+        ee22222efbddddddddddddbfe22222ee
+        e22e2e22ebbddddddddddbbe22e2e22e
+        eeeeeeeebbbbbddddddbbbbbeeeeeeee
+        cbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbc
+        cbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbc
+        cccccccccccccccccccccccccccccccc
+        .cccccccccccccccccccccccccccccc.
+        ..cccccccccccccccccccccccccccc..
+        `),
+    miniMenu.createMenuItem("mapa2", img`
+        . . . . . c c b b b . . . . . . 
+        . . . . c b d d d d b . . . . . 
+        . . . . c d d d d d d b b . . . 
+        . . . . c d d d d d d d d b . . 
+        . . . c b b d d d d d d d b . . 
+        . . . c b b d d d d d d d b . . 
+        . c c c c b b b b d d d b b b . 
+        . c d d b c b b b b b b b b d b 
+        c b b d d d b b b b b d d b d b 
+        c c b b d d d d d d d b b b d c 
+        c b c c c b b b b b b b d d c c 
+        c c b b c c c c b d d d b c c b 
+        . c c c c c c c c c c c b b b b 
+        . . c c c c c b b b b b b b c . 
+        . . . . . . c c b b b b c c . . 
+        . . . . . . . . c c c c . . . . 
+        `),
+    miniMenu.createMenuItem("mapa3", img`
+        ..cccc.........
+        .c5553c........
+        c35553ccccccc..
+        c35553c355555c.
+        c35553c5555533c
+        c35553c3333333c
+        c35553cccccc33c
+        c35553c55553ccc
+        c35553c555553c.
+        c35553c555553c.
+        c35553c555553c.
+        c35553c555553c.
+        c35553c555553c.
+        c35553c555553c.
+        c35553c555553c.
+        c35533c555553c.
+        c33333cccccccc.
+        c33333c355555c.
+        c33333c5555533c
+        c33333c3333333c
+        c33333c3333333c
+        c33333c3333333c
+        .cccccccccccccc
+        .cbbc.....cbbc.
+        `),
+    miniMenu.createMenuItem("mapa4", img`
+        ..cccccccccccccccccccccccccccc..
+        .b3333333333333333333333333333..
+        c333111111111111111111111111333c
+        c331133333333333333333333331133c
+        c331333333333333333333333333133c
+        c331333333333333333333333333133c
+        c331333333333333333333333333133c
+        c331333333333333333333333333133c
+        c331333333333333333333333333133c
+        c331333333333333333333333333133c
+        c331333333333333333333333333133c
+        c331333333333333333333333333133c
+        c331133333333333333333333331133c
+        c333111111111111111111111111333c
+        cb3333333333333333333333333333bc
+        cbb33333333333333333333333333bbc
+        cbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbc
+        c3bbbbbbbbbbbbbbbbbbbbbbbbbbbb3c
+        c3bb333bbbb333bbbb333bbbb333bb3c
+        .ccbcccb33bcccb33bcccb33bcccbcc.
+        ..cccccccccccccccccccccccccccc..
+        ..cbbc....................cbbc..
+        ..c33c....................c33c..
+        ...cc......................cc...
+        `)
+    ]
+    menuMapas = miniMenu.createMenuFromArray(itemsMapas)
+    menuMapas.setTitle("Mapas")
+    menuMapas.setButtonEventsEnabled(true)
+    menuMapas.onButtonPressed(controller.A, function (selection, selectedIndex) {
+        onMapa_Seleccionado(selection, selectedIndex)
+    })
+    myMenu.onButtonPressed(controller.B, function (selection, selectedIndex) {
+        onMapa_Cancelar(selection, selectedIndex)
+    })
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (pantallaActual == "jugando") {
@@ -414,15 +540,21 @@ function personaje_3 () {
     controller.moveSprite(mySprite, 100, 0)
     scene.cameraFollowSprite(mySprite)
 }
+function call_Confirmar_inicio () {
+	
+}
 let items: miniMenu.MenuItem[] = []
 let menuPrincipal: miniMenu.MenuSprite = null
+let itemsMapas: miniMenu.MenuItem[] = []
+let menuMapas: miniMenu.MenuSprite = null
 let menuPersonajes: miniMenu.MenuSprite = null
 let itemsPersonajes: miniMenu.MenuItem[] = []
 let mySprite: Sprite = null
+let mapaSeleccionado = 0
 let personajeSeleccionado = 0
 let pantallaActual = ""
 pantallaActual = "menu"
 personajeSeleccionado = 1
-let mapaSeleccionado = 1
+mapaSeleccionado = 1
 pantalla_inicio()
 Menu_principal()
