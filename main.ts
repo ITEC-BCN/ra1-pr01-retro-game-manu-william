@@ -113,30 +113,97 @@ function personaje_4 () {
     scene.cameraFollowSprite(mySprite)
 }
 function Seleccionar_personajes () {
-    personaje_4()
+    pantallaActual = "seleccionarPersonaje"
+    itemsPersonajes = [
+    miniMenu.createMenuItem("1", img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . 3 3 3 3 3 3 3 3 3 3 
+        . 3 3 3 3 3 . . . . . . . . . 3 
+        3 . . . . . . . . . . . . . . 3 
+        . . . . . . . 3 . . . . . . . 3 
+        . . . . . . . 3 . . . . . . . 3 
+        . . . . . . . 3 . . . . . . 3 3 
+        . . . . . . . . 3 3 . . 3 3 . . 
+        . . . . . . . . . . 3 3 . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `),
+    miniMenu.createMenuItem("2", img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . 3 3 3 3 3 3 3 3 3 3 3 3 3 . 
+        . . . . . . . . . . . . . . 3 . 
+        . . . . . . . . 3 3 . . . . 3 . 
+        . . . . . . . . 3 . . . . . 3 . 
+        . . . . . . . . 3 3 3 3 . . 3 . 
+        . . . . . . . . . . . . 3 3 3 . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `),
+    miniMenu.createMenuItem("3", img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . 3 3 3 3 3 3 3 . . . . . . . . 
+        . . . . . . . . 3 3 3 3 . . . . 
+        . . . 3 . . . . . . . . 3 3 3 . 
+        . . . 3 . . . . . . . . . . 3 3 
+        . . . 3 3 . . . . . . . . . . 3 
+        . . . . 3 3 . . . . . . . . . 3 
+        . . . . . 3 3 3 . . . . . . . 3 
+        . . . . . . . . 3 3 3 3 3 3 3 . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `)
+    ]
+    menuPersonajes = miniMenu.createMenuFromArray(itemsPersonajes)
+    menuPersonajes.setTitle("Personajes")
+    menuPersonajes.setButtonEventsEnabled(true)
+    menuPersonajes.onButtonPressed(controller.A, function (selection, selectedIndex) {
+        onPersonaje_Seleccionado(selection, selectedIndex)
+    })
+    menuPersonajes.onButtonPressed(controller.B, function (selection, selectedIndex) {
+        onPersonaje_Cancelar(selection, selectedIndex)
+    })
 }
-function onMenuPrincipalA (value: string, index: number) {
-    if (index == 0) {
-        menuPrincipal.close()
-        Seleccionar_personajes()
-    } else if (index == 1) {
-        menuPrincipal.close()
-        Seleccionar_mapas()
-    }
-}
-function Seleccionar_mapas () {
-    dibujar_mapa_4()
+function onPersonaje_Seleccionado (selection: string, selectedIndex: number) {
+    personajeSeleccionado = selectedIndex + 1
+    menuPersonajes.close()
+    game.splash("personaje seleccionado")
+    Menu_principal()
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     mySprite.vy = -200
 })
+function Seleccionar_mapas () {
+    dibujar_mapa_4()
+}
 function dibujar_mapa_4 () {
     tiles.setCurrentTilemap(tilemap`mapaPrueba`)
     scene.setBackgroundImage(assets.image`mapafodno`)
 }
-function onMenuPrincipalB (value: string, index: number) {
-    menuPrincipal.close()
-    game.splash("saliendo del menu")
+function onMenu_Principal_A (selection: string, selectedIndex: number) {
+    if (selectedIndex == 0) {
+        menuPrincipal.close()
+        Seleccionar_personajes()
+    } else if (selectedIndex == 1) {
+        menuPrincipal.close()
+        Seleccionar_mapas()
+    }
 }
 function pantalla_inicio () {
     scene.setBackgroundColor(15)
@@ -146,6 +213,10 @@ function pantalla_inicio () {
 function dibujar_mapa_2 () {
     tiles.setCurrentTilemap(tilemap`mapaPrueba`)
     scene.setBackgroundImage(assets.image`mapafodno`)
+}
+function onMenu_Principal_B (selection: string, selectedIndex: number) {
+    menuPrincipal.close()
+    game.splash("saliendo del menu")
 }
 function personaje_2 () {
     mySprite = sprites.create(assets.image`pato`, SpriteKind.Player)
@@ -162,6 +233,10 @@ function personaje_2 () {
 function dibujar_mapa_1 () {
     tiles.setCurrentTilemap(tilemap`mapaPrueba`)
     scene.setBackgroundImage(assets.image`mapafodno`)
+}
+function onPersonaje_Cancelar (selection: string, selectedIndex: number) {
+    menuPersonajes.close()
+    Menu_principal()
 }
 function Menu_principal () {
     scene.setBackgroundColor(15)
@@ -205,10 +280,10 @@ function Menu_principal () {
     menuPrincipal.setTitle("Menu Principal")
     menuPrincipal.setButtonEventsEnabled(true)
     menuPrincipal.onButtonPressed(controller.A, function (selection, selectedIndex) {
-        onMenuPrincipalA(selection, selectedIndex)
+        onMenu_Principal_A(selection, selectedIndex)
     })
     menuPrincipal.onButtonPressed(controller.B, function (selection, selectedIndex) {
-        onMenuPrincipalB(selection, selectedIndex)
+        onMenu_Principal_B(selection, selectedIndex)
     })
 }
 function dibujar_mapa_3 () {
@@ -342,8 +417,11 @@ function personaje_3 () {
     scene.cameraFollowSprite(mySprite)
 }
 let items: miniMenu.MenuItem[] = []
-let pantallaActual = ""
 let menuPrincipal: miniMenu.MenuSprite = null
+let personajeSeleccionado = 0
+let menuPersonajes: miniMenu.MenuSprite = null
+let itemsPersonajes: miniMenu.MenuItem[] = []
+let pantallaActual = ""
 let mySprite: Sprite = null
 pantalla_inicio()
 Menu_principal()
