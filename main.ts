@@ -1,4 +1,3 @@
-let myMenu: miniMenu.MenuSprite = null
 function personaje_4 () {
     mySprite = sprites.create(assets.image`pato`, SpriteKind.Player)
     animation.runImageAnimation(
@@ -113,6 +112,10 @@ function personaje_4 () {
     controller.moveSprite(mySprite, 100, 0)
     scene.cameraFollowSprite(mySprite)
 }
+function onConfirmar_B (selection: string, selectedIndex: number) {
+    menuConfirmar.close()
+    Seleccionar_mapas()
+}
 function Seleccionar_personajes () {
     pantallaActual = "seleccionarPersonaje"
     itemsPersonajes = [miniMenu.createMenuItem("bart", img`
@@ -187,12 +190,17 @@ function onMapa_Seleccionado (selection: string, selectedIndex: number) {
     mapaSeleccionado = selectedIndex + 1
     menuMapas.close()
     game.splash("Mapa seleccionado")
-    call_Confirmar_inicio()
+    Confirmar_inicio()
 }
 function onMapa_Cancelar (selection: string, selectedIndex: number) {
     menuMapas.close()
     Menu_principal()
 }
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (pantallaActual == "jugando") {
+        mySprite.vy = -200
+    }
+})
 function Seleccionar_mapas () {
     pantallaActual = "seleccionarMapa"
     itemsMapas = [
@@ -311,11 +319,11 @@ function Seleccionar_mapas () {
         onMapa_Cancelar(selection, selectedIndex)
     })
 }
-controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (pantallaActual == "jugando") {
-        mySprite.vy = -200
-    }
-})
+function iniciar_juego () {
+    pantallaActual = "jugando"
+    scene.setBackgroundColor(9)
+    game.splash("Iniciando juego!")
+}
 function dibujar_mapa_4 () {
     tiles.setCurrentTilemap(tilemap`mapaPrueba`)
     scene.setBackgroundImage(assets.image`mapafodno`)
@@ -333,6 +341,33 @@ function pantalla_inicio () {
     scene.setBackgroundColor(15)
     game.splash("PIXEL DASH")
     effects.confetti.startScreenEffect(100)
+}
+function onConfirmar_A (selection: string, selectedIndex: number) {
+    if (selectedIndex == 0) {
+        menuConfirmar.close()
+        iniciar_juego()
+    } else if (selectedIndex == 1) {
+        menuConfirmar.close()
+        Seleccionar_mapas()
+    }
+}
+function Confirmar_inicio () {
+    pantallaActual = "confirmarInicio"
+    if (personajeSeleccionado == 0) {
+        game.splash("primero elige un personaje")
+        Menu_principal()
+        return
+    }
+    itemsConfirmar = [miniMenu.createMenuItem("confirmar"), miniMenu.createMenuItem("cancelar")]
+    menuConfirmar = miniMenu.createMenuFromArray(itemsConfirmar)
+    menuConfirmar.setTitle("Menu confirmar")
+    menuConfirmar.setButtonEventsEnabled(true)
+    menuConfirmar.onButtonPressed(controller.A, function (selection, selectedIndex) {
+        onConfirmar_A(selection, selectedIndex)
+    })
+    myMenu.onButtonPressed(controller.B, function (selection, selectedIndex) {
+        onConfirmar_B(selection, selectedIndex)
+    })
 }
 function dibujar_mapa_2 () {
     tiles.setCurrentTilemap(tilemap`mapaPrueba`)
@@ -540,15 +575,15 @@ function personaje_3 () {
     controller.moveSprite(mySprite, 100, 0)
     scene.cameraFollowSprite(mySprite)
 }
-function call_Confirmar_inicio () {
-	
-}
 let items: miniMenu.MenuItem[] = []
+let itemsConfirmar: miniMenu.MenuItem[] = []
 let menuPrincipal: miniMenu.MenuSprite = null
+let myMenu: miniMenu.MenuSprite = null
 let itemsMapas: miniMenu.MenuItem[] = []
 let menuMapas: miniMenu.MenuSprite = null
 let menuPersonajes: miniMenu.MenuSprite = null
 let itemsPersonajes: miniMenu.MenuItem[] = []
+let menuConfirmar: miniMenu.MenuSprite = null
 let mySprite: Sprite = null
 let mapaSeleccionado = 0
 let personajeSeleccionado = 0
