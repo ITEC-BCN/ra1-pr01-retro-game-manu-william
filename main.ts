@@ -114,8 +114,7 @@ function personaje_4 () {
 }
 function Seleccionar_personajes () {
     pantallaActual = "seleccionarPersonaje"
-    itemsPersonajes = [
-    miniMenu.createMenuItem("1", img`
+    itemsPersonajes = [miniMenu.createMenuItem("bart", img`
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . 3 3 3 3 3 3 3 3 3 3 
@@ -132,8 +131,7 @@ function Seleccionar_personajes () {
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
-        `),
-    miniMenu.createMenuItem("2", img`
+        `), miniMenu.createMenuItem("santa", img`
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
@@ -150,8 +148,7 @@ function Seleccionar_personajes () {
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
-        `),
-    miniMenu.createMenuItem("3", img`
+        `), miniMenu.createMenuItem("perro", img`
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
@@ -168,8 +165,7 @@ function Seleccionar_personajes () {
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
-        `)
-    ]
+        `)]
     menuPersonajes = miniMenu.createMenuFromArray(itemsPersonajes)
     menuPersonajes.setTitle("Personajes")
     menuPersonajes.setButtonEventsEnabled(true)
@@ -186,12 +182,14 @@ function onPersonaje_Seleccionado (selection: string, selectedIndex: number) {
     game.splash("personaje seleccionado")
     Menu_principal()
 }
-controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    mySprite.vy = -200
-})
 function Seleccionar_mapas () {
     dibujar_mapa_4()
 }
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (pantallaActual == "jugando") {
+        mySprite.vy = -200
+    }
+})
 function dibujar_mapa_4 () {
     tiles.setCurrentTilemap(tilemap`mapaPrueba`)
     scene.setBackgroundImage(assets.image`mapafodno`)
@@ -418,10 +416,13 @@ function personaje_3 () {
 }
 let items: miniMenu.MenuItem[] = []
 let menuPrincipal: miniMenu.MenuSprite = null
-let personajeSeleccionado = 0
 let menuPersonajes: miniMenu.MenuSprite = null
 let itemsPersonajes: miniMenu.MenuItem[] = []
-let pantallaActual = ""
 let mySprite: Sprite = null
+let personajeSeleccionado = 0
+let pantallaActual = ""
+pantallaActual = "menu"
+personajeSeleccionado = 1
+let mapaSeleccionado = 1
 pantalla_inicio()
 Menu_principal()
