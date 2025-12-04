@@ -191,7 +191,7 @@ function onMapa_Seleccionado (selection: string, selectedIndex: number) {
     mapaSeleccionado = selectedIndex + 1
     menuMapas.close()
     game.splash("Mapa seleccionado")
-    Confirmar_inicio()
+    iniciar_juego()
 }
 function onMapa_Cancelar (selection: string, selectedIndex: number) {
     menuMapas.close()
@@ -338,7 +338,15 @@ function iniciar_juego () {
         dibujar_mapa_4()
     }
     pause(100)
-    personaje_1()
+    if (personajeSeleccionado == 1) {
+        personaje_1()
+    } else if (personajeSeleccionado == 2) {
+        personaje_2()
+    } else if (personajeSeleccionado == 3) {
+        personaje_3()
+    } else if (personajeSeleccionado == 4) {
+        personaje_4()
+    }
 }
 function dibujar_mapa_4 () {
     tiles.setCurrentTilemap(tilemap`mapaPrueba`)
@@ -359,9 +367,7 @@ function pantalla_inicio () {
     effects.confetti.startScreenEffect(100)
 }
 function Confirmar_inicio () {
-    pantallaActual = "confirmarInicio"
-    scene.setBackgroundColor(15)
-    game.showLongText("¿INICIAR JUEGO?\\nPersonaje:" + convertToText(personajeSeleccionado) + "\\nMapa:" + convertToText(mapaSeleccionado) + "\\nA = CONFIRMAR" + "\\nB = CANCELAR", DialogLayout.Center)
+	
 }
 function dibujar_mapa_2 () {
     tiles.setCurrentTilemap(tilemap`mapaPrueba`)
