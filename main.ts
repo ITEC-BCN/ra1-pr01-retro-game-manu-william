@@ -327,7 +327,7 @@ function onMenu_Principal_B (selection: string, selectedIndex: number) {
     game.splash("saliendo del menu")
 }
 function personaje_2 () {
-    mySprite = sprites.create(assets.image`pato`, SpriteKind.Player)
+    mySprite = sprites.create(assets.image`Santa0`, SpriteKind.Player)
     animation.runImageAnimation(
     mySprite,
     assets.animation`Santa`,
@@ -624,7 +624,7 @@ function dibujar_mapa_3 () {
         `)
 }
 function personaje_1 () {
-    mySprite = sprites.create(assets.image`pato`, SpriteKind.Player)
+    mySprite = sprites.create(assets.image`Bart0`, SpriteKind.Player)
     animation.runImageAnimation(
     mySprite,
     assets.animation`Bart`,
