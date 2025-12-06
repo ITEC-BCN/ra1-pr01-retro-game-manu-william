@@ -57,9 +57,9 @@ function onMapa_Cancelar (selection: string, selectedIndex: number) {
 function Seleccionar_mapas () {
     pantallaActual = "seleccionarMapa"
     itemsMapas = [
-    miniMenu.createMenuItem("mapa1", assets.image`icono1`),
-    miniMenu.createMenuItem("mapa2", assets.image`meta2`),
-    miniMenu.createMenuItem("mapa3", img`
+    miniMenu.createMenuItem("Mapa 1", assets.image`icono1`),
+    miniMenu.createMenuItem("Mapa 2", assets.image`meta2`),
+    miniMenu.createMenuItem("Mapa 3", img`
         . . . . . . . . b b . . . . . . 
         . . . . . . . b 9 1 b . . . . . 
         . . b b . . . b 9 9 b . . . . . 
@@ -77,31 +77,27 @@ function Seleccionar_mapas () {
         . . . . b b b . . . b b b b . . 
         . . . . . . . . . . . . . . . . 
         `),
-    miniMenu.createMenuItem("mapa4", img`
-        ..cccccccccccccccccccccccccccc..
-        .b3333333333333333333333333333..
-        c333111111111111111111111111333c
-        c331133333333333333333333331133c
-        c331333333333333333333333333133c
-        c331333333333333333333333333133c
-        c331333333333333333333333333133c
-        c331333333333333333333333333133c
-        c331333333333333333333333333133c
-        c331333333333333333333333333133c
-        c331333333333333333333333333133c
-        c331333333333333333333333333133c
-        c331133333333333333333333331133c
-        c333111111111111111111111111333c
-        cb3333333333333333333333333333bc
-        cbb33333333333333333333333333bbc
-        cbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbc
-        c3bbbbbbbbbbbbbbbbbbbbbbbbbbbb3c
-        c3bb333bbbb333bbbb333bbbb333bb3c
-        .ccbcccb33bcccb33bcccb33bcccbcc.
-        ..cccccccccccccccccccccccccccc..
-        ..cbbc....................cbbc..
-        ..c33c....................c33c..
-        ...cc......................cc...
+    miniMenu.createMenuItem("Mapa 4", img`
+        ....................
+        ....................
+        .........1..........
+        ......661d1.........
+        .....177717766......
+        ....1d177777677.....
+        ..6.717777c77177....
+        ...7c77767771d17....
+        ...77677766771777...
+        ..1777766677777767..
+        .1d1776717676777c7..
+        .7177661d176777777..
+        .77767771777777176..
+        .677c77777c7671d17..
+        .77777777777767176..
+        .667776776777777767.
+        ...76776766676766...
+        ....................
+        ....................
+        ....................
         `)
     ]
     menuMapas = miniMenu.createMenuFromArray(itemsMapas)
@@ -163,8 +159,8 @@ function iniciar_juego () {
     }
 }
 function dibujar_mapa_4 () {
-    tiles.setCurrentTilemap(tilemap`mapaPrueba`)
-    scene.setBackgroundImage(assets.image`mapafodno`)
+    tiles.setCurrentTilemap(tilemap`mapa4`)
+    scene.setBackgroundImage(assets.image`mapafondo4`)
 }
 function onMenu_Principal_A (selection: string, selectedIndex: number) {
     if (selectedIndex == 0) {
@@ -186,7 +182,7 @@ function Confirmar_inicio () {
 }
 function dibujar_mapa_2 () {
     tiles.setCurrentTilemap(tilemap`MAPA2_DRAGON`)
-    scene.setBackgroundImage(assets.image`mapafodno`)
+    scene.setBackgroundImage(assets.image`mapafondo4`)
 }
 function onMenu_Principal_B (selection: string, selectedIndex: number) {
     menuPrincipal.close()
