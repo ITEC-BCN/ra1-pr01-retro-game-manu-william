@@ -112,11 +112,48 @@ function personaje_4 () {
     controller.moveSprite(mySprite, 100, 0)
     scene.cameraFollowSprite(mySprite)
 }
+controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (pantallaActual == "confirmarInicio") {
+        Seleccionar_mapas()
+    }
+})
 function Seleccionar_personajes () {
     pantallaActual = "seleccionarPersonaje"
-    itemsPersonajes = [miniMenu.createMenuItem("Bart", assets.image`Bart0`), miniMenu.createMenuItem("Santa", assets.image`Santa0`), miniMenu.createMenuItem("Finn", assets.image`Finn`)]
+    itemsPersonajes = [
+    miniMenu.createMenuItem("Bart", assets.image`Bart0`),
+    miniMenu.createMenuItem("Santa", assets.image`Santa0`),
+    miniMenu.createMenuItem("Finn", assets.image`Finn`),
+    miniMenu.createMenuItem("Pato", img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . b 5 b . . . 
+        . . . . . . . . . b 5 b . . . . 
+        . . . . . . b b b b b b . . . . 
+        . . . . . b b 5 5 5 5 5 b . . . 
+        . b b b b b 5 5 5 5 5 5 5 b . . 
+        . b d 5 b 5 5 5 5 5 5 5 5 b . . 
+        . . b 5 5 b 5 d 1 f 5 d 4 f . . 
+        . . b d 5 5 b 1 f f 5 4 4 c . . 
+        b b d b 5 5 5 d f b 4 4 4 4 4 b 
+        b d d c d 5 5 b 5 4 4 4 4 4 b . 
+        c d d d c c b 5 5 5 5 5 5 5 b . 
+        c b d d d d d 5 5 5 5 5 5 5 b . 
+        . c d d d d d d 5 5 5 5 5 d b . 
+        . . c b d d d d d 5 5 5 b b . . 
+        . . . c c c c c c c c b b . . . 
+        `)
+    ]
     menuPersonajes = miniMenu.createMenuFromArray(itemsPersonajes)
     menuPersonajes.setTitle("Personajes")
+    menuPersonajes.setMenuStyleProperty(miniMenu.MenuStyleProperty.Rows, 4)
+    menuPersonajes.setMenuStyleProperty(miniMenu.MenuStyleProperty.Columns, 1)
+    menuPersonajes.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 120)
+    menuPersonajes.setMenuStyleProperty(miniMenu.MenuStyleProperty.Height, 110)
+    menuPersonajes.setMenuStyleProperty(miniMenu.MenuStyleProperty.BackgroundColor, 15)
+    menuPersonajes.setMenuStyleProperty(miniMenu.MenuStyleProperty.Border, 3)
+    menuPersonajes.setMenuStyleProperty(miniMenu.MenuStyleProperty.BorderColor, 8)
+    menuPersonajes.setStyleProperty(miniMenu.StyleKind.DefaultAndSelected, miniMenu.StyleProperty.Alignment, 1)
+    menuPersonajes.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.Alignment, 1)
+    menuPersonajes.setPosition(80, 60)
     menuPersonajes.setButtonEventsEnabled(true)
     menuPersonajes.onButtonPressed(controller.A, function (selection, selectedIndex) {
         onPersonaje_Seleccionado(selection, selectedIndex)
@@ -141,6 +178,13 @@ function onMapa_Cancelar (selection: string, selectedIndex: number) {
     menuMapas.close()
     Menu_principal()
 }
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (pantallaActual == "jugando") {
+        mySprite.vy = -200
+    } else if (pantallaActual == "confirmarInicio") {
+        iniciar_juego()
+    }
+})
 function Seleccionar_mapas () {
     pantallaActual = "seleccionarMapa"
     itemsMapas = [
@@ -193,6 +237,16 @@ function Seleccionar_mapas () {
     ]
     menuMapas = miniMenu.createMenuFromArray(itemsMapas)
     menuMapas.setTitle("Mapas")
+    menuMapas.setMenuStyleProperty(miniMenu.MenuStyleProperty.Rows, 4)
+    menuMapas.setMenuStyleProperty(miniMenu.MenuStyleProperty.Columns, 1)
+    menuMapas.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 120)
+    menuMapas.setMenuStyleProperty(miniMenu.MenuStyleProperty.Height, 115)
+    menuMapas.setMenuStyleProperty(miniMenu.MenuStyleProperty.BackgroundColor, 15)
+    menuMapas.setMenuStyleProperty(miniMenu.MenuStyleProperty.Border, 3)
+    menuMapas.setMenuStyleProperty(miniMenu.MenuStyleProperty.BorderColor, 8)
+    menuMapas.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.Alignment, 1)
+    menuMapas.setStyleProperty(miniMenu.StyleKind.DefaultAndSelected, miniMenu.StyleProperty.Alignment, 1)
+    menuMapas.setPosition(80, 60)
     menuMapas.setButtonEventsEnabled(true)
     menuMapas.onButtonPressed(controller.A, function (selection, selectedIndex) {
         onMapa_Seleccionado(selection, selectedIndex)
@@ -201,18 +255,6 @@ function Seleccionar_mapas () {
         onMapa_Cancelar(selection, selectedIndex)
     })
 }
-controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (pantallaActual == "jugando") {
-        mySprite.vy = -200
-    } else if (pantallaActual == "confirmarInicio") {
-        iniciar_juego()
-    }
-})
-controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (pantallaActual == "confirmarInicio") {
-        Seleccionar_mapas()
-    }
-})
 function iniciar_juego () {
     pantallaActual = "jugando"
     scene.setBackgroundColor(9)
@@ -246,10 +288,10 @@ function dibujar_mapa_4 () {
 function onMenu_Principal_A (selection: string, selectedIndex: number) {
     if (selectedIndex == 0) {
         menuPrincipal.close()
-        Seleccionar_personajes()
+        Seleccionar_mapas()
     } else if (selectedIndex == 1) {
         menuPrincipal.close()
-        Seleccionar_mapas()
+        Seleccionar_personajes()
     }
 }
 function pantalla_inicio () {
@@ -305,6 +347,15 @@ function Menu_principal () {
     items = [miniMenu.createMenuItem("Personajes", assets.image`personaje`), miniMenu.createMenuItem("Mapas", assets.image`MapaPortada`)]
     menuPrincipal = miniMenu.createMenuFromArray(items)
     menuPrincipal.setTitle("Menú Principal")
+    menuPrincipal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Rows, 1)
+    menuPrincipal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Columns, 2)
+    menuPrincipal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Width, 140)
+    menuPrincipal.setMenuStyleProperty(miniMenu.MenuStyleProperty.Height, 50)
+    menuPrincipal.setStyleProperty(miniMenu.StyleKind.Default, miniMenu.StyleProperty.Background, 12)
+    menuPrincipal.setStyleProperty(miniMenu.StyleKind.Default, miniMenu.StyleProperty.Border, 2)
+    menuPrincipal.setStyleProperty(miniMenu.StyleKind.Default, miniMenu.StyleProperty.BorderColor, 8)
+    menuPrincipal.setStyleProperty(miniMenu.StyleKind.Title, miniMenu.StyleProperty.Alignment, 1)
+    menuPrincipal.setPosition(80, 60)
     menuPrincipal.setButtonEventsEnabled(true)
     menuPrincipal.onButtonPressed(controller.A, function (selection, selectedIndex) {
         onMenu_Principal_A(selection, selectedIndex)
