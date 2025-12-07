@@ -1,33 +1,130 @@
- 
+ # PIXEL DASH
 
+Un juego de plataformas retro desarrollado en **MakeCode Arcade** con múltiples personajes y mapas temáticos.
 
-> Open this page at [https://raimonizard.github.io/demo/](https://raimonizard.github.io/demo/)
+![MakeCode Arcade](https://img.shields.io/badge/MakeCode-Arcade-orange)
+![Build Status](https://github.com/ITEC-BCN/ra1-pr01-retro-game-manu-william/workflows/MakeCode/badge.svg)
 
-## Use as Extension
+## Descripción
 
-This repository can be added as an **extension** in MakeCode.
+**Pixel Dash** es un juego de plataformas 2D con estética retro donde los jugadores pueden elegir entre diferentes personajes icónicos y navegar a través de diversos mapas temáticos. El objetivo es alcanzar la meta mientras superas obstáculos y desafíos únicos en cada nivel.
 
-* open [https://arcade.makecode.com/](https://arcade.makecode.com/)
-* click on **New Project**
-* click on **Extensions** under the gearwheel menu
-* search for **https://github.com/raimonizard/demo** and import
+## Características
 
-## Edit this project ![Build status badge](https://github.com/raimonizard/demo/workflows/MakeCode/badge.svg)
+### Personajes Jugables
+- **Bart Simpson** - El travieso de Springfield
+- **Santa Claus** - El legendario Papá Noel
+- **Finn** - El héroe de Adventure Time
+- **Goku** - El guerrero Saiyan
 
-To edit this repository in MakeCode.
+Cada personaje cuenta con:
+- Animaciones personalizadas
+- Sprites únicos
+- Controles fluidos de movimiento
 
-* open [https://arcade.makecode.com/](https://arcade.makecode.com/)
-* click on **Import** then click on **Import URL**
-* paste **https://github.com/raimonizard/demo** and click import
+### Mapas Disponibles
+1. **Mapa 1 - Castillo de Lava** 
+   - Ambiente de castillo medieval
+   - Obstáculos de lava ardiente
+   
+2. **Mapa 2 - Reino del Dragón** 
+   - Desafíos épicos
+   - Temática dragón
+   
+3.  **Mapa 3 - Mundo Acuático** 
+   - Nivel con temática de agua
+   - Fondos oceánicos personalizados
+   
+4. **Mapa 4** - Nivel misterioso adicional
 
-## Blocks preview
+## Controles
 
-This image shows the blocks code from the last commit in master.
-This image may take a few minutes to refresh.
+| Acción | Control |
+|--------|---------|
+| Mover | Flechas direccionales / D-pad |
+| Saltar | Botón A |
+| Seleccionar | Botón A |
+| Volver | Botón B |
 
-![A rendered view of the blocks](https://github.com/raimonizard/demo/raw/master/.github/makecode/blocks.png)
+## Cómo Jugar
 
-#### Metadata (used for search, rendering)
+### Opción 1: Jugar Online
+1. Visita [MakeCode Arcade](https://arcade.makecode.com/)
+2. Haz clic en **Import** y luego en **Import URL**
+3. Pega la URL del repositorio: `https://github.com/ITEC-BCN/ra1-pr01-retro-game-manu-william`
+4. ¡Comienza a jugar!
 
-* for PXT/arcade
-<script src="https://makecode.com/gh-pages-embed.js"></script><script>makeCodeRender("{{ site.makecode.home_url }}", "{{ site.github.owner_name }}/{{ site.github.repository_name }}");</script>
+### Opción 2: Editar el Proyecto
+1. Abre [https://arcade.makecode.com/](https://arcade.makecode.com/)
+2. Selecciona **Import** → **Import URL**
+3.  Introduce: `https://github.com/ITEC-BCN/ra1-pr01-retro-game-manu-william`
+4.  Edita el código usando bloques o TypeScript
+
+## Tecnologías Utilizadas
+
+- **Lenguaje:** TypeScript / Bloques visuales
+- **Plataforma:** MakeCode Arcade
+- **Control de versiones:** Git & GitHub
+- **Dependencias:**
+  - `device` - Funciones del dispositivo
+  - `animation` - Sistema de animaciones
+  - `arcade-mini-menu` - Sistema de menús personalizados
+
+## Estructura del Proyecto
+
+```
+ra1-pr01-retro-game-manu-william/
+├── main.ts              # Código principal del juego
+├── main.blocks          # Versión en bloques
+├── main.py              # Versión Python
+├── images.g.ts          # Sprites generados
+├── tilemap.g.ts         # Mapas de tiles generados
+├── assets/              # Recursos del juego
+├── pxt.json             # Configuración del proyecto
+└── README.md            # Este archivo
+```
+
+## Mecánicas del Juego
+
+### Sistema de Menús
+- **Menú Principal:** Navegación intuitiva entre opciones
+- **Selector de Personajes:** Vista previa visual de cada personaje
+- **Selector de Mapas:** Previsualización de los niveles disponibles
+
+### Física del Juego
+- Gravedad aplicada a los personajes (`ay = 400`)
+- Velocidad de movimiento horizontal: `100 px/s`
+- Velocidad de salto: `-200 px/s`
+- Sistema de cámara que sigue al jugador
+
+### Condiciones de Victoria
+Alcanza el tile de meta (🏁) en cada nivel para ganar y ver la pantalla de victoria con efectos de confetti.
+
+## Autores
+
+- **Manuel Felix**
+- **William Guzman** 
+
+## Requisitos
+
+- Navegador web moderno
+- Conexión a internet (para jugar online)
+- Compatible con MakeCode Arcade
+
+## Instalación Local
+
+Para trabajar con el proyecto localmente:
+
+```bash
+# Clonar el repositorio
+git clone https://github.com/ITEC-BCN/ra1-pr01-retro-game-manu-william.git
+
+# Navegar al directorio
+cd ra1-pr01-retro-game-manu-william
+```
+
+Luego importa la carpeta en MakeCode Arcade. 
+
+## Licencia
+
+Este proyecto fue desarrollado como parte del curso en ITEC-BCN. 
