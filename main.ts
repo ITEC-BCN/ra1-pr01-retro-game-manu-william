@@ -9,7 +9,6 @@ scene.onOverlapTile(SpriteKind.Player, sprites.builtin.crowd3, function on_overl
     game.gameOver(false)
 })
 //  Tile de muerte: Esquina verde interior suroeste
-//  Zona de colisión letal en el mapa de mazmorra verde.
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.greenInnerSouthWest, function on_overlap_tile2(sprite9: Sprite, location9: tiles.Location) {
     game.gameOver(false)
 })

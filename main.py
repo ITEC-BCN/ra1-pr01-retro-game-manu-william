@@ -11,7 +11,6 @@ def on_overlap_tile(sprite5, location5):
 scene.on_overlap_tile(SpriteKind.player, sprites.builtin.crowd3, on_overlap_tile)
 
 # Tile de muerte: Esquina verde interior suroeste
-# Zona de colisión letal en el mapa de mazmorra verde.
 def on_overlap_tile2(sprite9, location9):
     game.game_over(False)
 scene.on_overlap_tile(SpriteKind.player,
