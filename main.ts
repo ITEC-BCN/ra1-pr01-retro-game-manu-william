@@ -19,6 +19,11 @@ scene.onOverlapTile(SpriteKind.Player, sprites.builtin.crowd2, function (sprite,
 scene.onOverlapTile(SpriteKind.Player, sprites.castle.rock1, function (sprite, location) {
     game.gameOver(false)
 })
+controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (pantallaActual == "confirmarInicio") {
+        Seleccionar_mapas()
+    }
+})
 function Seleccionar_personajes () {
     pantallaActual = "seleccionarPersonaje"
     itemsPersonajes = [
@@ -71,6 +76,13 @@ function onMapa_Cancelar (selection: string, selectedIndex: number) {
 }
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.greenInnerSouthEast, function (sprite, location) {
     game.gameOver(false)
+})
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (pantallaActual == "jugando") {
+        mySprite.vy = -170
+    } else if (pantallaActual == "confirmarInicio") {
+        iniciar_juego()
+    }
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.swamp.swampTile3, function (sprite, location) {
     game.gameOver(false)
@@ -147,18 +159,6 @@ function Seleccionar_mapas () {
         onMapa_Cancelar(selection, selectedIndex)
     })
 }
-controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (pantallaActual == "jugando") {
-        mySprite.vy = -200
-    } else if (pantallaActual == "confirmarInicio") {
-        iniciar_juego()
-    }
-})
-controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (pantallaActual == "confirmarInicio") {
-        Seleccionar_mapas()
-    }
-})
 function iniciar_juego () {
     pantallaActual = "jugando"
     scene.setBackgroundColor(9)
@@ -227,7 +227,7 @@ scene.onOverlapTile(SpriteKind.Player, sprites.builtin.coral0, function (sprite,
 })
 function dibujar_mapa_2 () {
     tiles.setCurrentTilemap(tilemap`MAPA2_DRAGON`)
-    scene.setBackgroundImage(assets.image`Mapafondo2`)
+    scene.setBackgroundImage(assets.image`fondoMapa2`)
 }
 function onMenu_Principal_B (selection: string, selectedIndex: number) {
     menuPrincipal.close()
@@ -291,7 +291,7 @@ function Menu_principal () {
 }
 function dibujar_mapa_3 () {
     tiles.setCurrentTilemap(tilemap`MAPA3_AGUA`)
-    scene.setBackgroundImage(assets.image`mapaFondo3`)
+    scene.setBackgroundImage(assets.image`fondoMapa3`)
 }
 function personaje_1 () {
     mySprite = sprites.create(assets.image`Bart0`, SpriteKind.Player)
