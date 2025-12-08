@@ -28,14 +28,15 @@ Cada personaje cuenta con:
    - Obstáculos de lava ardiente
    
 2. **Mapa 2 - Reino del Dragón** 
-   - Desafíos épicos
    - Temática dragón
    
 3.  **Mapa 3 - Mundo Acuático** 
    - Nivel con temática de agua
    - Fondos oceánicos personalizados
    
-4. **Mapa 4** - Nivel misterioso adicional
+4. **Mapa 4 - Campo Silvestre**
+   - Temática verde
+   - Con setos de pinchos como obstáculo
 
 ## Controles
 
@@ -62,7 +63,7 @@ Cada personaje cuenta con:
 
 ## Tecnologías Utilizadas
 
-- **Lenguaje:** TypeScript / Bloques visuales
+- **Lenguaje:** Python / Bloques visuales
 - **Plataforma:** MakeCode Arcade
 - **Control de versiones:** Git & GitHub
 - **Dependencias:**
@@ -111,16 +112,7 @@ Alcanza el tile de meta (🏁) en cada nivel para ganar y ver la pantalla de vic
 - Conexión a internet (para jugar online)
 - Compatible con MakeCode Arcade
 
-## Instalación Local
-
-Para trabajar con el proyecto localmente:
-
-```bash
-# Clonar el repositorio
-git clone https://github.com/ITEC-BCN/ra1-pr01-retro-game-manu-william.git
-
-# Navegar al directorio
-cd ra1-pr01-retro-game-manu-william
+## Demo (2 minutos)
 ```
 
 Luego importa la carpeta en MakeCode Arcade. 
