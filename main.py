@@ -1,5 +1,20 @@
+# Tile de muerte: Multitud 3
+
+def on_overlap_tile(sprite5, location5):
+    game.game_over(False)
+scene.on_overlap_tile(SpriteKind.player, sprites.builtin.crowd3, on_overlap_tile)
+
+# Tile de muerte: Esquina verde interior suroeste
+
+def on_overlap_tile2(sprite9, location9):
+    game.game_over(False)
+scene.on_overlap_tile(SpriteKind.player,
+    sprites.dungeon.green_inner_south_west,
+    on_overlap_tile2)
+
 def personaje_4():
     global mySprite
+    # Crea y configura el personaje Goku
     mySprite = sprites.create(assets.image("""
         Goku0
         """), SpriteKind.player)
@@ -12,9 +27,49 @@ def personaje_4():
     mySprite.ay = 400
     controller.move_sprite(mySprite, 100, 0)
     scene.camera_follow_sprite(mySprite)
+# Eventos de Colisión con Tiles de Muerte
+# Tile de muerte: Pantano
+
+def on_overlap_tile3(sprite, location):
+    game.game_over(False)
+scene.on_overlap_tile(SpriteKind.player,
+    sprites.swamp.swamp_tile0,
+    on_overlap_tile3)
+
+# Tile sin acción: Transparente
+
+def on_overlap_tile4(sprite18, location18):
+    pass
+scene.on_overlap_tile(SpriteKind.player,
+    assets.tile("""
+        transparency16
+        """),
+    on_overlap_tile4)
+
+# Eventos de Colisión con Tiles de Victoria
+# Tile de victoria: Meta personalizada
+
+def on_overlap_tile5(sprite17, location17):
+    game.game_over(True)
+    game.set_game_over_effect(True, effects.confetti)
+    game.set_game_over_message(True, "GAME OVER!")
+scene.on_overlap_tile(SpriteKind.player,
+    assets.tile("""
+        Meta
+        """),
+    on_overlap_tile5)
+
+def on_b_pressed():
+    # Maneja el botón B: cancelar acciones
+    if pantallaActual == "confirmarInicio":
+        Seleccionar_mapas()
+controller.B.on_event(ControllerButtonEvent.PRESSED, on_b_pressed)
+
 def Seleccionar_personajes():
     global pantallaActual, itemsPersonajes, menuPersonajes
+    # Muestra el menú de selección de personajes
     pantallaActual = "seleccionarPersonaje"
+    # Crear los items de personajes
     itemsPersonajes = [miniMenu.create_menu_item("Bart", assets.image("""
             Bart0
             """)),
@@ -27,21 +82,26 @@ def Seleccionar_personajes():
         miniMenu.create_menu_item("Goku", assets.image("""
             Goku0
             """))]
+    # Configurar el menú
     menuPersonajes = miniMenu.create_menu_from_array(itemsPersonajes)
     menuPersonajes.set_title("Personajes")
+    # Configurar layout vertical (4 filas x 1 columna)
     menuPersonajes.set_menu_style_property(miniMenu.MenuStyleProperty.ROWS, 4)
     menuPersonajes.set_menu_style_property(miniMenu.MenuStyleProperty.COLUMNS, 1)
     menuPersonajes.set_menu_style_property(miniMenu.MenuStyleProperty.WIDTH, 120)
     menuPersonajes.set_menu_style_property(miniMenu.MenuStyleProperty.HEIGHT, 110)
+    # Configurar colores: fondo gris con borde azul
     menuPersonajes.set_menu_style_property(miniMenu.MenuStyleProperty.BACKGROUND_COLOR, 15)
     menuPersonajes.set_menu_style_property(miniMenu.MenuStyleProperty.BORDER, 3)
     menuPersonajes.set_menu_style_property(miniMenu.MenuStyleProperty.BORDER_COLOR, 8)
+    # Centrar el título y los items
     menuPersonajes.set_style_property(miniMenu.StyleKind.DEFAULT_AND_SELECTED,
         miniMenu.StyleProperty.ALIGNMENT,
         1)
     menuPersonajes.set_style_property(miniMenu.StyleKind.TITLE,
         miniMenu.StyleProperty.ALIGNMENT,
         1)
+    # Posicionar y activar eventos de botones
     menuPersonajes.set_position(80, 60)
     menuPersonajes.set_button_events_enabled(True)
     
@@ -56,29 +116,72 @@ def Seleccionar_personajes():
     
 def onPersonaje_Seleccionado(selection3: str, selectedIndex3: number):
     global personajeSeleccionado
+    # Guarda el personaje seleccionado y vuelve al menú principal
     personajeSeleccionado = selectedIndex3 + 1
     menuPersonajes.close()
     game.splash("Personaje seleccionado.")
     Menu_principal()
+# Tile de muerte: Multitud 2
+
+def on_overlap_tile6(sprite2, location2):
+    game.game_over(False)
+scene.on_overlap_tile(SpriteKind.player, sprites.builtin.crowd2, on_overlap_tile6)
+
+# Tile de muerte: Roca del castillo
+
+def on_overlap_tile7(sprite3, location3):
+    game.game_over(False)
+scene.on_overlap_tile(SpriteKind.player, sprites.castle.rock1, on_overlap_tile7)
+
 def onMapa_Seleccionado(selection4: str, selectedIndex4: number):
     global mapaSeleccionado
+    # Guarda el mapa seleccionado e inicia el juego
     mapaSeleccionado = selectedIndex4 + 1
     menuMapas.close()
     game.splash("Mapa seleccionado.")
     iniciar_juego()
 def onMapa_Cancelar(selection5: str, selectedIndex5: number):
+    # Cancela la selección de mapa y vuelve al menú principal
     menuMapas.close()
     Menu_principal()
+# Controladores de Botones
+
+def on_a_pressed():
+    # Maneja el botón A: saltar durante el juego o confirmar en otras pantallas
+    if pantallaActual == "jugando":
+        mySprite.vy = -170
+    elif pantallaActual == "confirmarInicio":
+        iniciar_juego()
+controller.A.on_event(ControllerButtonEvent.PRESSED, on_a_pressed)
+
+# Tile de muerte: Pared verde exterior norte
+
+def on_overlap_tile8(sprite11, location11):
+    game.game_over(False)
+scene.on_overlap_tile(SpriteKind.player,
+    sprites.dungeon.green_outer_north2,
+    on_overlap_tile8)
+
+# Tile de muerte: Esquina verde interior noreste
+
+def on_overlap_tile9(sprite8, location8):
+    game.game_over(False)
+scene.on_overlap_tile(SpriteKind.player,
+    sprites.dungeon.green_inner_north_east,
+    on_overlap_tile9)
+
 def Seleccionar_mapas():
     global pantallaActual, itemsMapas, menuMapas
+    # Muestra el menú de selección de mapas
     pantallaActual = "seleccionarMapa"
-    itemsMapas = [miniMenu.create_menu_item("Mapa 1", assets.image("""
+    # Crear los items de mapas con sus imágenes preview
+    itemsMapas = [miniMenu.create_menu_item("Castillo de Lava", assets.image("""
             icono1
             """)),
-        miniMenu.create_menu_item("Mapa 2", assets.image("""
+        miniMenu.create_menu_item("Reino del Dragón", assets.image("""
             meta2
             """)),
-        miniMenu.create_menu_item("Mapa 3",
+        miniMenu.create_menu_item("Mundo Submarino",
             img("""
                 . . . . . . . . b b . . . . . .
                 . . . . . . . b 9 1 b . . . . .
@@ -97,7 +200,7 @@ def Seleccionar_mapas():
                 . . . . b b b . . . b b b b . .
                 . . . . . . . . . . . . . . . .
                 """)),
-        miniMenu.create_menu_item("Mapa 4",
+        miniMenu.create_menu_item("Campo Silvestre",
             img("""
                 ....................
                 ....................
@@ -120,21 +223,26 @@ def Seleccionar_mapas():
                 ....................
                 ....................
                 """))]
+    # Configurar el menú
     menuMapas = miniMenu.create_menu_from_array(itemsMapas)
     menuMapas.set_title("Mapas")
+    # Configurar layout vertical (4 filas x 1 columna)
     menuMapas.set_menu_style_property(miniMenu.MenuStyleProperty.ROWS, 4)
     menuMapas.set_menu_style_property(miniMenu.MenuStyleProperty.COLUMNS, 1)
-    menuMapas.set_menu_style_property(miniMenu.MenuStyleProperty.WIDTH, 120)
+    menuMapas.set_menu_style_property(miniMenu.MenuStyleProperty.WIDTH, 130)
     menuMapas.set_menu_style_property(miniMenu.MenuStyleProperty.HEIGHT, 115)
+    # Configurar colores: fondo gris con borde azul
     menuMapas.set_menu_style_property(miniMenu.MenuStyleProperty.BACKGROUND_COLOR, 15)
     menuMapas.set_menu_style_property(miniMenu.MenuStyleProperty.BORDER, 3)
     menuMapas.set_menu_style_property(miniMenu.MenuStyleProperty.BORDER_COLOR, 8)
+    # Centrar el título y los items
     menuMapas.set_style_property(miniMenu.StyleKind.TITLE,
         miniMenu.StyleProperty.ALIGNMENT,
         1)
     menuMapas.set_style_property(miniMenu.StyleKind.DEFAULT_AND_SELECTED,
         miniMenu.StyleProperty.ALIGNMENT,
         1)
+    # Posicionar y activar eventos de botones
     menuMapas.set_position(80, 60)
     menuMapas.set_button_events_enabled(True)
     
@@ -147,26 +255,17 @@ def Seleccionar_mapas():
         onMapa_Cancelar(selection7, selectedIndex7)
     menuMapas.on_button_pressed(controller.B, on_button_pressed4)
     
-
-def on_a_pressed():
-    if pantallaActual == "jugando":
-        mySprite.vy = -200
-    elif pantallaActual == "confirmarInicio":
-        iniciar_juego()
-controller.A.on_event(ControllerButtonEvent.PRESSED, on_a_pressed)
-
-def on_b_pressed():
-    if pantallaActual == "confirmarInicio":
-        Seleccionar_mapas()
-controller.B.on_event(ControllerButtonEvent.PRESSED, on_b_pressed)
-
+# Función Principal del Juego
 def iniciar_juego():
     global pantallaActual
+    # Inicia el juego con el mapa y personaje seleccionados
     pantallaActual = "jugando"
     scene.set_background_color(9)
     game.splash("¡Iniciando juego!")
     pause(200)
+    # Destruir sprites anteriores antes de crear nuevos
     sprites.destroy_all_sprites_of_kind(SpriteKind.player)
+    # Cargar el mapa según la selección
     if mapaSeleccionado == 1:
         dibujar_mapa_1()
     elif mapaSeleccionado == 2:
@@ -176,6 +275,7 @@ def iniciar_juego():
     elif mapaSeleccionado == 4:
         dibujar_mapa_4()
     pause(100)
+    # Crear el personaje según la selección
     if personajeSeleccionado == 1:
         personaje_1()
     elif personajeSeleccionado == 2:
@@ -185,40 +285,72 @@ def iniciar_juego():
     elif personajeSeleccionado == 4:
         personaje_4()
 def dibujar_mapa_4():
+    # Configura el Mapa 4: Campo Silvestre
     tiles.set_current_tilemap(tilemap("""
-        mapa4
+        MAPA4_CAMPO
         """))
     scene.set_background_image(assets.image("""
         mapafondo4
         """))
+# Callbacks de Menús
 def onMenu_Principal_A(selection8: str, selectedIndex8: number):
+    # Maneja la selección en el menú principal cuando se presiona A
     if selectedIndex8 == 0:
+        # Opción 0: ir a selección de mapas
         menuPrincipal.close()
         Seleccionar_mapas()
     elif selectedIndex8 == 1:
+        # Opción 1: ir a selección de personajes
         menuPrincipal.close()
         Seleccionar_personajes()
+# Funciones de Menús
 def pantalla_inicio():
+    # Muestra la pantalla de inicio del juego
     scene.set_background_color(15)
     scene.set_background_image(assets.image("""
         fondo_inicio
         """))
     game.splash("PIXEL DASH")
     effects.confetti.start_screen_effect(100)
-def Confirmar_inicio():
-    pass
+# Tile de muerte: Lava
+
+def on_overlap_tile10(sprite14, location14):
+    game.game_over(False)
+scene.on_overlap_tile(SpriteKind.player,
+    sprites.dungeon.hazard_lava1,
+    on_overlap_tile10)
+
+# Tile de muerte: Esquina verde interior noroeste
+
+def on_overlap_tile11(sprite15, location15):
+    game.game_over(False)
+scene.on_overlap_tile(SpriteKind.player,
+    sprites.dungeon.green_inner_north_west,
+    on_overlap_tile11)
+
+# Tile de muerte: Pared verde exterior este
+
+def on_overlap_tile12(sprite12, location12):
+    game.game_over(False)
+scene.on_overlap_tile(SpriteKind.player,
+    sprites.dungeon.green_outer_east2,
+    on_overlap_tile12)
+
 def dibujar_mapa_2():
+    # Configura el Mapa 2: Reino del Dragón
     tiles.set_current_tilemap(tilemap("""
         MAPA2_DRAGON
         """))
     scene.set_background_image(assets.image("""
-        mapafondo4
+        fondoMapa2
         """))
 def onMenu_Principal_B(selection9: str, selectedIndex9: number):
+    # Maneja cuando se presiona B en el menú principal para salir
     menuPrincipal.close()
     game.splash("Saliendo del menú")
 def personaje_2():
     global mySprite
+    # Crea y configura el personaje Santa
     mySprite = sprites.create(assets.image("""
         Santa0
         """), SpriteKind.player)
@@ -228,26 +360,47 @@ def personaje_2():
     mySprite.ay = 400
     controller.move_sprite(mySprite, 100, 0)
     scene.camera_follow_sprite(mySprite)
+# Tile de muerte: Pared púrpura exterior norte
 
-def on_overlap_tile(sprite, location):
-    game.game_over(True)
-    game.set_game_over_effect(True, effects.confetti)
-    game.set_game_over_message(True, "GAME OVER!")
+def on_overlap_tile13(sprite13, location13):
+    game.game_over(False)
 scene.on_overlap_tile(SpriteKind.player,
-    assets.tile("""
-        Meta
-        """),
-    on_overlap_tile)
+    sprites.dungeon.purple_outer_north2,
+    on_overlap_tile13)
 
-def on_overlap_tile2(sprite2, location2):
-    game.game_over(True)
-    game.set_game_over_effect(True, effects.confetti)
-    game.set_game_over_message(True, "GAME OVER!")
+# Tile de muerte: Pantano 3
+
+def on_overlap_tile14(sprite7, location7):
+    game.game_over(False)
 scene.on_overlap_tile(SpriteKind.player,
-    sprites.dungeon.collectible_red_crystal,
-    on_overlap_tile2)
+    sprites.swamp.swamp_tile3,
+    on_overlap_tile14)
 
+# Tile de muerte: Pared púrpura este
+
+def on_overlap_tile15(sprite4, location4):
+    game.game_over(False)
+scene.on_overlap_tile(SpriteKind.player,
+    sprites.dungeon.purple_outer_east2,
+    on_overlap_tile15)
+
+# Tile de muerte: Coral
+
+def on_overlap_tile16(sprite16, location16):
+    game.game_over(False)
+scene.on_overlap_tile(SpriteKind.player, sprites.builtin.coral0, on_overlap_tile16)
+
+# Tile de muerte: Tile del bosque
+
+def on_overlap_tile17(sprite10, location10):
+    game.game_over(False)
+scene.on_overlap_tile(SpriteKind.player,
+    sprites.builtin.forest_tiles10,
+    on_overlap_tile17)
+
+# Funciones de Mapas
 def dibujar_mapa_1():
+    # Configura el Mapa 1: Castillo de Lava
     tiles.set_current_tilemap(tilemap("""
         MAPA1_LAVA
         """))
@@ -255,24 +408,30 @@ def dibujar_mapa_1():
         fondo_castillo
         """))
 def onPersonaje_Cancelar(selection10: str, selectedIndex10: number):
+    # Cancela la selección de personaje y vuelve al menú principal
     menuPersonajes.close()
     Menu_principal()
 def Menu_principal():
     global pantallaActual, items, menuPrincipal
+    # Crea el menú principal con las opciones de Personajes y Mapas
     scene.set_background_color(15)
     pantallaActual = "menuPrincipal"
+    # Crear los items del menú
     items = [miniMenu.create_menu_item("Personajes", assets.image("""
             personaje
             """)),
         miniMenu.create_menu_item("Mapas", assets.image("""
             MapaPortada
             """))]
+    # Configurar el menú
     menuPrincipal = miniMenu.create_menu_from_array(items)
     menuPrincipal.set_title("Menú Principal")
+    # Configurar layout horizontal (1 fila x 2 columnas)
     menuPrincipal.set_menu_style_property(miniMenu.MenuStyleProperty.ROWS, 1)
     menuPrincipal.set_menu_style_property(miniMenu.MenuStyleProperty.COLUMNS, 2)
     menuPrincipal.set_menu_style_property(miniMenu.MenuStyleProperty.WIDTH, 140)
     menuPrincipal.set_menu_style_property(miniMenu.MenuStyleProperty.HEIGHT, 50)
+    # Configurar colores y bordes
     menuPrincipal.set_style_property(miniMenu.StyleKind.DEFAULT,
         miniMenu.StyleProperty.BACKGROUND,
         12)
@@ -283,6 +442,7 @@ def Menu_principal():
     menuPrincipal.set_style_property(miniMenu.StyleKind.TITLE,
         miniMenu.StyleProperty.ALIGNMENT,
         1)
+    # Posicionar y activar eventos de botones
     menuPrincipal.set_position(80, 60)
     menuPrincipal.set_button_events_enabled(True)
     
@@ -296,133 +456,27 @@ def Menu_principal():
     menuPrincipal.on_button_pressed(controller.B, on_button_pressed6)
     
 def dibujar_mapa_3():
+    # Configura el Mapa 3: Mundo Submarino
     tiles.set_current_tilemap(tilemap("""
         MAPA3_AGUA
         """))
-    scene.set_background_image(img("""
-        8fffffffffffffffffffffffff88fffff88ffff8998889999999989988888989999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-        ffffffffffffffffffffffffff8fffff88ff9f88889889999999989998888898999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-        fffffffffffffffffffffffff8fffff889ff9988888988999989998999888889899999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-        fffffffffffffffffffffffff8fff8f8f99ff998888898899988999899988888989999899999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-        ffffffffffffffffffffffff8fff8f8fff998998888889889998899989998898898999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-        fffffffffffffffffffffff8fff8f8fffff98888888888888999889998899889888899999699999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-        ffffffffffffffffffffff8ffff88ffffff99888889988888999988999889988988889998999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-        fffffffffffffffffffff88fff8ffff8ff889988888998898988998899988998899888999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-        fffffffffffffffffffff8fff8f8ff8ff8888988888899889988899889998899989988889998999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-        fffffffffffffffff8ffffff888888ff88888888888889988998889988999889998999888999999999989999999999999999999999999999999999999999999999999999999999999999999999999999
-        ffffffffffffffff8ffffff88888fff888888888888889999999888998899988999899988899999999999999999999999999999999999999999999999999999999999999999999999999999999999999
-        fffffffffffffff8ffffff88888ff88888888888888888898899988899889998899989999889998999999999999999999999999999999999999999999999999999999999999999999999999999999999
-        ffffffffffffff8fff88f888888f888888888888888888889889998889988999889998989988999999999999899999999999999999999999999999999999999999999999999999999999999999999999
-        fffffffffffff8ffff88f8888888888888888888888888888988899888998889988999988999899999999899998999999999999999999999999999999999999999999999999999999999999999999999
-        ffffffffffff8ffff88888888888888888888888889888888998889988899888998899998889989999999998999969999999999999999999999999999999999999999999999999999999999999999999
-        ffffffffffffffff888f88888888888888888888888988888899888999889988899888999888899999999999989999999999999999999999999999999999999999999999999999999999999999999999
-        fffffffffffffff888f888888888888888888888888898888889988899988998889988899998888999999999999899999999999999999999999999999999999999999999999999999999999999999999
-        ffffffffffffff8fff8888888888888888888888888889888888998889998889988998889999988889999989999998999999999999999999999999999999999999999999999999999999999999999999
-        fffffff8fffff8fff88888888888888888888888888888988888899888999888998899888999999889999998999999989999999999999999999999999999999999999999999999999999999999999999
-        ffffff8fffff8fff88f888888888888888888888888888898888889988899988899888998899999999999999989999999899999999999999999999999999999999999999999999999999999999999999
-        ffffffff8f88fff88ff888888888888888888888888888889888888999889998889988899888999999899999999899999998999989999999999999999999999999999999999999999999999999999999
-        fffffff8888ff888ff8888888888888888888888888888888988888899999999888999899988899999988999999998899999999998899999999999999999999999999999999999999999999999999999
-        ff8fff888ffff8fff88888888888888888888888888888888888888889999999988999999999888999998899999999988889999999988999999999999999999999999999999999999999999999999999
-        fffff888ffff8ff8888888888888888888888888888888888888888889999989998889999988988899999988899999999998899999999999999999999999999999999999999999999999999999999999
-        ffff88fffff8ff88888888888888888888888888888888888888888889999888999888999988889999999999888999999998988999999999999999999999999999999999999999999999999999999999
-        fff88fff88fff888888888888888888888888888888888888888888888988988899998889999888899999999999889999999998889999999999999999999999999999999999999999999999999999999
-        f8888ff88ffff888888888888888888888888888888888888888888888898899888998888999998889999888999998899999999988889899999999999999999999999999899999999999999999999999
-        88fff888ffff8888888888888888888888888888888888888888888888889888988898888889999988899988889999988888999999988888999999999899999999999999999999999999999999999999
-        8fff88ffff888888888888888888888888888888888888888888888888888988899888988888999998888999888889999888888999999988888898999999888999999999999999999999999999999999
-        ff888ffff8888888888888888888888888888888888888888888888888888899888988898888899999988889999888899999888889999999888888899999999998889999999999999999999999999999
-        f888ffff88888888888888888888888888888888888888888888888889988888888898888988888999999888899998888899999888899999999888888889999999999988888999999999999888888888
-        88ffff8888888888888888888888888888888888888888888888888888998888888889988898888999999998888999998888999999888899999998889999988888999999999899999999998888888888
-        8ffff88888888888888888888888888888888888888888888888888888899888888988898899988889999999988988999998889999999988999999999999999999999999999999999999999999999999
-        8fff888888888888888888888888888888888888888888888888888888888988888888888999999888999999999988889999998889999999989999989999999999999999999999999999999999999999
-        ff88888888888888888888888888888888888888888888888888888888888898888888988999999998889999999999888899999998899999999999999999999999988888889999999999999999999999
-        f888888888888888888888888888888888888888888888888888888888888889988888899998899999888899999999998888899999998899999999999999899999999988888888888888888888889999
-        6888888888888888888888888888888888888888888888888888888888888888898888888898888999998888999999999998888999999998899999999999999999999999999988888888888888888888
-        6888888888888888888888888888888888888888888888888888888888888888888888888888988889999988888899999999988888999999998899999999999999999999999999999999999999999999
-        6688888888888888888888888888888888888888888888888888888888888888888888888888899888889999998888999999999988888999999998899999999999999999999999999999999999999999
-        66f8888888888888888888888888888888888888888888888888888888888888888888888888889999888899999988888999988999988888999999999999999999999999999899999999999999999999
-        66f8888888888888888888888888888888888888888888888888888888888888888888889888888898998888899999988889988889999988999999999999999999999999999999999999999999999999
-        66f8888888888888888888888888888888888888888888888888888888888888888888888998888888889998888999999989999888889999999999999888999999998888888888889999999888888899
-        66f8888888888888888888888888888888888888888888888888888888888888888888888889988888888999888888999999999999888899999999999988888999999999998899999999888889999999
-        66ff888888888888888888888888888888888888888888888888888888888888888888888888899888888889988888889999999999998888899999999999888888899999999999988889888889999999
-        66fff88888888888888888888888888888888888888888888888888888888888888888888888889998888888888888888899998889999988888999989999998999999999999999998888888999999999
-        666ff88888888888888888888888888888888888888888888888888888888888888888888888888899988888888888888889998888888999988899888889999999999888999999999999888888888889
-        666fff8888888888888888888888888888888888888888888888888888888888888888888888888888998888888888888899999899888888999999998888889999999999998888889999999888888888
-        666fff6888888888888888888888888888888888888888888888888888888888888888888888888888889988888888888888889888999988998889999998888889999999998888888888888888999999
-        666ff66688888888888888888888888888888888888888888888888888888888888888888888888888888899888888888888888888888999998888888999999888888999999999998888889999999999
-        666ff66688888888888888888888888888888888888888888888888888888888888888888888888888888888898888888888888888888889999999888888888999888899888888888888889999999999
-        666ff66688888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888889998899998888888889999989999999999999999999999
-        666ff6666f888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888889999988889999999999999888888888888fff
-        666fff66fff88888888888888888888888888888888888888888888888888888888888888888888888888888888888888888998888888888888888888888888888888888888888888888888888fff668
-        6666fffffff88888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888998888888888888888888888888888888888888888888888fff666666
-        66666fffffff888888888f888888888888888888888888888888888888888888888888888888888888888888888888888888888888899988888888888888888888888888888888888888fffff6666866
-        66666fffffff888888f8f6688888888888888888888888888888888888888888888888888888888888888888888888888888888888888899998888888888888888888888888888888888fff886666666
-        666666ffff8666888ffff66f8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888fff866666666
-        666666ffff8666888ffff666888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888889988888888888888899999996ff66666866
-        666666fff68666888ffff666f88888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888889998888888888888888ff8f666666666
-        666666ff668666f888fff666ff888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888889998888888888fffff666666668
-        6666666f6666666f8866f666ff888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888ffff8666666668
-        66666666666866fff86666668ff88888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888ffff6666666666
-        6666cc666668fffff86666666ff88888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888ffff6666666666
-        696ccccc6668fff8ff6666666888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888fffff8888ffff86666666666
-        96cccccc66688fff6f866666688888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888fff8ffff88fff866666666666
-        96ccccbb66668ff66ff66666668f88888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888ffffffff8ffff666666666666
-        96ccccbb66668ff666f8666666ffff888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888ff6fffffffff6666666666666
-        96ccccbb66668ff666f8666666ff8ff88888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888f666fffffff66666666666666
-        99ccccbbc6666ff6666f666666fff8fff888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888f666ffffff866666666666666
-        99ccccbbb6666ff6666f8666666ffffff88888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888886888888886668fff66666644466666666
-        69ccccbbb6666ff666668666666fff6ff8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888886668888886666ffff66666444449444466
-        666cccbbb66666f666668f66666ff666ff888888888888888888888888888888888888888888888888888888888888888888888888888888ff888888fff888666888888666fff6666666444444444446
-        6666cccbb66cccc66666ff666666f666ff88888888888888888888888888888888888888888888888888888888888888888888888888888f6fff888ffff8886668888ff666f666666666442224444446
-        666ccccbb6ccccbb6666f6f88666f666ff88888888888888888888888888888888888888888888888888888888888888888888888888886666f888ffffff88666688fff6666666666666442224444446
-        66cccccbbcccccbb666666686666f666ff888888888888888888888888888888888888888888888888888888888888888888888888888f666ff888ff88ffff6666f8fff6666666666644442222224466
-        6cccbbcbbbbbcccc6666f666666666666ff8888888888888888888888888888888888888888888888888888888888888888888888888f6666f888fff8888ff6666fffff6666666666644222424226666
-        6cccbbbbbbbbcccc6668556666666f666ff8888888888888888888888888888888888888888888888888888888888888888888888888f666ff88fff88888886666fff666666666666444244444466666
-        6cccbbccbbbccccc66685566666cccf666ff888888888888888888888888888888888888888888888888888888888888888888888888f666ff8fff888888886666886666666666666444244444466666
-        6cccccccccccccc66665566666ccccc666fffff886888888888888888888888888888888888888888888888888888888888888888888f666ff8ffff888fff66666866f66666666666644444444466666
-        8cccccccccccccc6666566666ccccbbc666fffff666888888888888888888888888888888888888888888888888888888888888ffff6f666f8fffffff8ff666666866f8ff666cbbb666c4b4444466668
-        66ccccccccccccc6665566666ccccbbb666fffff6668888f88888888888888888888888888888888888888888888888888888f6666666666fffff8fffff666666666f666666bbbbbc66cbb4444c66668
-        666cccccccccccc6665566666cccccbc6666fff866688ffff88888888888888888888888888888888888888888888888888886666666ff666fff6668f66666666666666666bbbcbcc66cbbcccccbc666
-        6666ccccccccccc66655666666ccccbb6666ffff66688ffff888888888888888888888888888888888888888888888888888f666666fff666f666668666666666666666686bbbccccc66bbccc5bbbc66
-        6666cccccccccc666655666666cccbbb666cccff6668ff68ff888888888888888888888888888888888888888888fffffffff666666ff666f6666666666666666666666666bbccccccccbbccc55bbcc6
-        666ccccccccc44446655666666cccbbb6cccccc66668f666ff8888888ff88888888888888888888888888fff88888888888f6666666ff6666666666666f666666666666666cbccccccccccccb55cccc6
-        666cccccccc64444444566666cccccbbbbbbbccc6666f666ff8588ff6666888888888ffffffff888888888888fffffffffff6666666f6666666666666668666666666666666cccccccccccccb556ccc6
-        666ccccccc64444444445666ccbcccbbbbbbbcccf666f666f6658ff66666f88fff888888888888888888888fffffffffffff6666666f66666666666666666666666666666666ccccccccccccb556cc68
-        666ccccccc6644442444446ccbbbcccbbbbbccbb86666666f665ff866666fffffff88888888ffff88ff8888f88888ff88886666666666666666666666866688666699666666666ccccccccccc556cc55
-        666ccccccc6644222444444cccbbccccccccccbb666666666655f886666ffffffffffff888888888888ffffff8888888888666656666cccc6666666666668666666996666556666cccccccccc556c556
-        666ccccccc64442244244444ccccccccccccccbb666666666655f8f6666fffffffff888888888888888888888888888888866655666cccbbc6666666666666666669996665566666ccccccccc5566556
-        666ccccccc64444444244444cccccccccccccccc666666666655f88f6668ffffff8888ffffffffffffffff888888888888ff6655566ccbbbc66ccc66666666666669999995666666cccccccc55665566
-        666ccccccc6444444444444ccccccccccccccccc666666666556f88ff666ff88fffffffffffffffffffffff8fffffffffff66655566cccbbc6ccbbcc6666666666699999556666666ccccccc55665566
-        666ccccccc64444444422466666cccccccccccccc6666666655666866666ff88ffffffffff88f8888ff8888888ff888ff6666665666cccccbbccbbcc6666666666699999556666666866cccc55c66668
-        666ccccccc66444444424566666cccccccccccccc6666666656666666666ff8888ffff555f88f8ffff888888fffffff6666666656666ccccbbcccccc6666666666669999556666666866cccc55c66668
-        666cccccc666666444445566666cccccccccccccc66666665566666666666f88666fff5558888888888888888fffff66666666656666cccccccccccc6666666666666696556666666666cccc55c66666
-        666ccccccc66666644445566666cccccccccccccc666666655666666666cc6866666ff65f88888fffffffffffffff666666666655666cccccccccccc6666666666666666656666666666cccc55c66666
-        666ccccccc66666665565566666cccccccccccccc6666666566666666ccccc866666ff65ffffffffffff888888ff66666666666556666cccccccccc6666666666666666665566666666cccccc5666666
-        66cccccccc66666665566666666ccccccc666cc666666666566666666cccbbc6666f66655ffffffffffff8888ff6666666666665666666ccccccccc66ff666666666666665566666666ccccc65566666
-        66cccccccc666666665566666666cccccbb666666666666666666666ccccbbbb668f6665568888ffff888fffff666666655666655666666ccccccc66666666666666666666576666666ccccc65566666
-        666cccccc6666666665566666666cccccbb666666666666666666666ccccccbb66ff6665566888ffffffffff66666666655666669666996cbbcccc66666422444666666666556666666ccccc55666666
-        666cccccc6666666666566666666cccccbb6666666666666666ccccc6ccccccccc6f6665566fffffff8888866666666665566655999999cbbbcccc66644422444466666666556666666cccc655666666
-        666cccccc6666666666556666666cccccbbb666665566666666cccbbcccccccccbc666655666888888ffff66666ffffff5566655999999ccbbccc666224222444466666666656666666cccc655666666
-        666cccccc66666666665566666666cccccb666666656666666ccccbbccccccccbbbc6665566fffffffffff666ffffffff5566669959996ccccccc644224422444466666666656666666ccccc56666666
-        66cccccccc6666666666566666666cccccbb66666655696666ccccbbcccccccccbcc6665566fffffffffff6fffffffff6656666655666cbbbcccc444444424224466666666655666666cccc556666666
-        66ccccccc66666666666556666666cccccbb66666655966666cccccbbbccccccccc66665566fffffffffffffffffffff666665665566ccbbbccc6444444224444466666666655666666cccc556666666
-        66cccccccc6666666666556666666ccccccb666666559666666ccccbbbccccccccc6666556ff8ffffffffffffffffff6666655665566ccbbcc666444444494444466666666655666666cccc556666666
-        666ccccccc6666666666559666666cccccccc66666655444466cccccbccccccc66666665566ffffffffffffffff88866666655665666cbbbccc66644422444444468666666656666996cccc556666666
-        666ccccccc6666666666559666666cccccccc666666544444444ccccccccccccf8666666666fffffffffffffffffff66666666666666cbbbccc66664444449444666668666666666999cccc556666bcc
-        666ccccccc6666666666556966666ccccccccc666665444442444cccccccccc6f6666666666fffffffffffff88fffff6666666666666cbbcccc6666444444ccccc66686666666666cccccbb556666bbc
-        66ccccccc66666666666556666666cccccccccc666654444224444cccccccbbcff666666666ffffffffffffffffffff6666666666666cccccc6666664444cbbbbbc66666666666ccccbbbbbb56b666cc
-        66ccccccc66666666666566666666ccccccccccc66665442424444cccccccbbc68666666666fffffffff888888f8ff866666666666666cccc6666666644cbbbbbbcccc6666666cccbbbbbcbb66c666cc
-        66ccccccc66666666666566666666ccccccbbbccc6665542422244cccccccbbc66666666666688888ff8888fffffff6666666666666666cccc666666666bbbbcbcccccc666666cccbbbbbccc666c66cc
-        66ccccccc66666666665566666666ccccccbbbbcc6666444442244466ccccccc666665666666ffffffffffffffffff666666666666666cccccc6666666bbbccccccccccc66666ccccccccccc666c66cc
-        66ccccccc66666666665566666ccccccccccbbbbb6664444444424446cccccbb666665666666fffffffffffffffff6666666666666666cccccc666666bbbbcccccccccccc66666ccccccccccc66666cc
-        66ccccccc666666666655666ccccccccccccccbbb6664444444424446cccccbbb666656686666ffffffffffffffff666666666666666cccccccc66666bbbcccccccccccccc66666ccccccccccc6666cc
-        66cccccccccccc666665566cccccccccccccccccb666b444444444446cccccbbb6666566f6666f66ffffff88888866666666666666666cccccccc666cbbccccccccccccccc66666cccccccccccc666cc
-        66ccccccccccccc6666566ccccccccccccccccccc66ccb444444444666ccccbbb66655666666666666ffffffffff66666666666666666ccccccccccccccccccccccccccccc66666ccccccccccccc66cc
-        66ccccccccccccc66665cccccccccccccccccccc666cccc6444444ccc6cccccbb6666566666666f6666fffffffff66666666666666666cccccccccccccccccccccccccccccc666cccccccccccccc66cc
-        6cccccccccccccc66666ccccccccccccccccccc6666cccc6644bccccccccccccc8666666666666f66666ffffffff666666666666666666ccccccccccccccccccccccccccccccccccccccccccccccccc8
-        6cccccccccccccc66666ccccccccccccccccccc666ccccc6666ccccccccccccccf666666666666ff6666ffffffff6666666666666666666ccccccccccccccc6cccccccccccccccccccccccccccccccc8
+    scene.set_background_image(assets.image("""
+        fondoMapa3
         """))
+# Tile de victoria: Cristal rojo
+
+def on_overlap_tile18(sprite19, location19):
+    game.game_over(True)
+    game.set_game_over_effect(True, effects.confetti)
+    game.set_game_over_message(True, "GAME OVER!")
+scene.on_overlap_tile(SpriteKind.player,
+    sprites.dungeon.collectible_red_crystal,
+    on_overlap_tile18)
+
+# Funciones de Personajes
 def personaje_1():
     global mySprite
+    # Crea y configura el personaje Bart
     mySprite = sprites.create(assets.image("""
         Bart0
         """), SpriteKind.player)
@@ -432,8 +486,17 @@ def personaje_1():
     mySprite.ay = 400
     controller.move_sprite(mySprite, 100, 0)
     scene.camera_follow_sprite(mySprite)
+# Tile de muerte: Esquina verde interior sureste
+
+def on_overlap_tile19(sprite6, location6):
+    game.game_over(False)
+scene.on_overlap_tile(SpriteKind.player,
+    sprites.dungeon.green_inner_south_east,
+    on_overlap_tile19)
+
 def personaje_3():
     global mySprite
+    # Crea y configura el personaje Finn
     mySprite = sprites.create(assets.image("""
         Finn
         """), SpriteKind.player)
@@ -456,6 +519,7 @@ mySprite: Sprite = None
 mapaSeleccionado = 0
 personajeSeleccionado = 0
 pantallaActual = ""
+# Inicialización del Juego
 pantallaActual = "menu"
 personajeSeleccionado = 1
 mapaSeleccionado = 1
