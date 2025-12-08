@@ -3,11 +3,10 @@
 Un juego de plataformas retro desarrollado en **MakeCode Arcade** con múltiples personajes y mapas temáticos.
 
 ![MakeCode Arcade](https://img.shields.io/badge/MakeCode-Arcade-orange)
-![Build Status](https://github.com/ITEC-BCN/ra1-pr01-retro-game-manu-william/workflows/MakeCode/badge.svg)
 
 ## Descripción
 
-**Pixel Dash** es un juego de plataformas 2D con estética retro donde los jugadores pueden elegir entre diferentes personajes icónicos y navegar a través de diversos mapas temáticos. El objetivo es alcanzar la meta mientras superas obstáculos y desafíos únicos en cada nivel.
+**Pixel Dash** es un juego de plataformas 2D con estética retro donde los jugadores pueden elegir entre diferentes personajes icónicos y navegar a través de diversos mapas temáticos. El objetivo es alcanzar la meta mientras superas obstáculos en cada mapa.
 
 ## Características
 
