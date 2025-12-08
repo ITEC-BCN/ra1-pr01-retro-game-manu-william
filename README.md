@@ -12,9 +12,17 @@ Un juego de plataformas retro desarrollado en **MakeCode Arcade** con múltiples
 
 ### Personajes Jugables
 - **Bart Simpson** - El travieso de Springfield
+<img width="80" height="80" alt="bart" src="https://github.com/user-attachments/assets/4cfb937d-719a-4dd2-9c62-0894353d1351" />
+
 - **Santa Claus** - El legendario Papá Noel
-- **Finn** - El héroe de Adventure Time
+<img width="80" height="80" alt="santa" src="https://github.com/user-attachments/assets/da802f2b-75d9-44cf-ade0-932984d2ca1a" />
+
+- **Finn** - El héroe de Hora de Aventuras
+<img width="80" height="80" alt="finn" src="https://github.com/user-attachments/assets/03ed9be1-338c-4128-9c0b-f8ede4d21ba5" />
+
 - **Goku** - El guerrero Saiyan
+<img width="80" height="80" alt="goku" src="https://github.com/user-attachments/assets/3700264a-9caf-48ff-8c3c-53d75b131a3b" />
+
 
 Cada personaje cuenta con:
 - Animaciones personalizadas
@@ -48,17 +56,15 @@ Cada personaje cuenta con:
 
 ## Cómo Jugar
 
-### Opción 1: Jugar Online
+### Opción 1
 1. Visita [MakeCode Arcade](https://arcade.makecode.com/)
 2. Haz clic en **Import** y luego en **Import URL**
 3. Pega la URL del repositorio: `https://github.com/ITEC-BCN/ra1-pr01-retro-game-manu-william`
 4. ¡Comienza a jugar!
 
-### Opción 2: Editar el Proyecto
-1. Abre [https://arcade.makecode.com/](https://arcade.makecode.com/)
-2. Selecciona **Import** → **Import URL**
-3.  Introduce: `https://github.com/ITEC-BCN/ra1-pr01-retro-game-manu-william`
-4.  Edita el código usando bloques o TypeScript
+### Opción 2:
+1. Escanea el QR de la presentación
+2. ¡Comienza a jugar!
 
 ## Tecnologías Utilizadas
 
@@ -94,11 +100,11 @@ ra1-pr01-retro-game-manu-william/
 ### Física del Juego
 - Gravedad aplicada a los personajes (`ay = 400`)
 - Velocidad de movimiento horizontal: `100 px/s`
-- Velocidad de salto: `-200 px/s`
+- Velocidad de salto: `-190 px/s`
 - Sistema de cámara que sigue al jugador
 
 ### Condiciones de Victoria
-Alcanza el tile de meta (🏁) en cada nivel para ganar y ver la pantalla de victoria con efectos de confetti.
+Alcanza el tile de meta (🏁) para ganar y ver la pantalla de victoria.
 
 ## Autores
 
@@ -107,8 +113,12 @@ Alcanza el tile de meta (🏁) en cada nivel para ganar y ver la pantalla de vic
 
 ## Requisitos
 
-- Navegador web moderno
+- Navegador web
 - Conexión a internet (para jugar online)
 - Compatible con MakeCode Arcade
 
 ## Demo (2 minutos)
+
+https://github.com/user-attachments/assets/86f00fd8-295b-4651-8487-a93bd336966a
+
+
