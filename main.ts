@@ -159,7 +159,7 @@ function iniciar_juego () {
     }
 }
 function dibujar_mapa_4 () {
-    tiles.setCurrentTilemap(tilemap`mapa4`)
+    tiles.setCurrentTilemap(tilemap`MAPA4_CAMPO`)
     scene.setBackgroundImage(assets.image`mapafondo4`)
 }
 function onMenu_Principal_A (selection: string, selectedIndex: number) {
