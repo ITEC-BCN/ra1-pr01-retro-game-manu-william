@@ -112,10 +112,3 @@ Alcanza el tile de meta (🏁) en cada nivel para ganar y ver la pantalla de vic
 - Compatible con MakeCode Arcade
 
 ## Demo (2 minutos)
-```
-
-Luego importa la carpeta en MakeCode Arcade. 
-
-## Licencia
-
-Este proyecto fue desarrollado como parte del curso en ITEC-BCN. 
