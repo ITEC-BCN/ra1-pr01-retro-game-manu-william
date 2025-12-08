@@ -10,16 +10,14 @@ function personaje_4 () {
     controller.moveSprite(mySprite, 100, 0)
     scene.cameraFollowSprite(mySprite)
 }
+scene.onOverlapTile(SpriteKind.Player, sprites.swamp.swampTile0, function (sprite, location) {
+    game.gameOver(false)
+})
 scene.onOverlapTile(SpriteKind.Player, sprites.builtin.crowd2, function (sprite, location) {
     game.gameOver(false)
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.castle.rock1, function (sprite, location) {
     game.gameOver(false)
-})
-controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (pantallaActual == "confirmarInicio") {
-        Seleccionar_mapas()
-    }
 })
 function Seleccionar_personajes () {
     pantallaActual = "seleccionarPersonaje"
@@ -55,6 +53,12 @@ function onPersonaje_Seleccionado (selection: string, selectedIndex: number) {
     game.splash("Personaje seleccionado.")
     Menu_principal()
 }
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.purpleOuterEast2, function (sprite, location) {
+    game.gameOver(false)
+})
+scene.onOverlapTile(SpriteKind.Player, sprites.builtin.crowd3, function (sprite, location) {
+    game.gameOver(false)
+})
 function onMapa_Seleccionado (selection: string, selectedIndex: number) {
     mapaSeleccionado = selectedIndex + 1
     menuMapas.close()
@@ -65,12 +69,17 @@ function onMapa_Cancelar (selection: string, selectedIndex: number) {
     menuMapas.close()
     Menu_principal()
 }
-controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (pantallaActual == "jugando") {
-        mySprite.vy = -200
-    } else if (pantallaActual == "confirmarInicio") {
-        iniciar_juego()
-    }
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.greenInnerSouthEast, function (sprite, location) {
+    game.gameOver(false)
+})
+scene.onOverlapTile(SpriteKind.Player, sprites.swamp.swampTile3, function (sprite, location) {
+    game.gameOver(false)
+})
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.greenInnerNorthEast, function (sprite, location) {
+    game.gameOver(false)
+})
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.greenInnerSouthWest, function (sprite, location) {
+    game.gameOver(false)
 })
 function Seleccionar_mapas () {
     pantallaActual = "seleccionarMapa"
@@ -138,6 +147,18 @@ function Seleccionar_mapas () {
         onMapa_Cancelar(selection, selectedIndex)
     })
 }
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (pantallaActual == "jugando") {
+        mySprite.vy = -200
+    } else if (pantallaActual == "confirmarInicio") {
+        iniciar_juego()
+    }
+})
+controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (pantallaActual == "confirmarInicio") {
+        Seleccionar_mapas()
+    }
+})
 function iniciar_juego () {
     pantallaActual = "jugando"
     scene.setBackgroundColor(9)
@@ -164,10 +185,22 @@ function iniciar_juego () {
         personaje_4()
     }
 }
+scene.onOverlapTile(SpriteKind.Player, sprites.builtin.forestTiles10, function (sprite, location) {
+    game.gameOver(false)
+})
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.greenOuterNorth2, function (sprite, location) {
+    game.gameOver(false)
+})
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.greenOuterEast2, function (sprite, location) {
+    game.gameOver(false)
+})
 function dibujar_mapa_4 () {
     tiles.setCurrentTilemap(tilemap`MAPA4_CAMPO`)
     scene.setBackgroundImage(assets.image`mapafondo4`)
 }
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.purpleOuterNorth2, function (sprite, location) {
+    game.gameOver(false)
+})
 function onMenu_Principal_A (selection: string, selectedIndex: number) {
     if (selectedIndex == 0) {
         menuPrincipal.close()
@@ -186,6 +219,12 @@ function pantalla_inicio () {
     game.splash("PIXEL DASH")
     effects.confetti.startScreenEffect(100)
 }
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.greenInnerNorthWest, function (sprite, location) {
+    game.gameOver(false)
+})
+scene.onOverlapTile(SpriteKind.Player, sprites.builtin.coral0, function (sprite, location) {
+    game.gameOver(false)
+})
 function dibujar_mapa_2 () {
     tiles.setCurrentTilemap(tilemap`MAPA2_DRAGON`)
     scene.setBackgroundImage(assets.image`Mapafondo2`)
